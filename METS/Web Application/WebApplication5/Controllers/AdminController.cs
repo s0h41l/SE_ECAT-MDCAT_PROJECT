@@ -6,29 +6,27 @@ using System.Web.Mvc;
 
 namespace WebApplication5.Controllers
 {
-    public class FrontController : Controller
+    public class AdminController : Controller
     {
-        // GET: Front
+        // GET: Admin
         public ActionResult Index()
         {
-
             return View();
         }
 
-        // GET: Front/Details/5
+        // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
-            return Content("here");
             return View();
         }
 
-        // GET: Front/Create
+        // GET: Admin/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Front/Create
+        // POST: Admin/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -44,13 +42,13 @@ namespace WebApplication5.Controllers
             }
         }
 
-        // GET: Front/Edit/5
+        // GET: Admin/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Front/Edit/5
+        // POST: Admin/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -66,13 +64,13 @@ namespace WebApplication5.Controllers
             }
         }
 
-        // GET: Front/Delete/5
+        // GET: Admin/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Front/Delete/5
+        // POST: Admin/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
