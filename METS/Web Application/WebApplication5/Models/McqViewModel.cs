@@ -8,6 +8,7 @@ namespace WebApplication5.Models
 {
     public class McqViewModel
     {
+        public int? Id { get; set; }
         [Required]
         public int SubjectId { get; set; }
         [Required]
@@ -31,6 +32,9 @@ namespace WebApplication5.Models
         public DateTime EntryDate { get; set; }
         public int Upvotes { get; set; }
         public int Downvotes { get; set; }
+        public string Exam { get; set; }
+        public string Subject { get; set; }
+        public string Chapter { get; set; }
 
 
     }

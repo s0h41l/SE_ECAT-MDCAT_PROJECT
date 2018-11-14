@@ -362,6 +362,7 @@
     <Content Include="Views\Admin\addExam.cshtml" />
     <Content Include="Views\Admin\addSubject.cshtml" />
     <Content Include="Views\Admin\addChapter.cshtml" />
+    <Content Include="Views\Admin\allMcq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

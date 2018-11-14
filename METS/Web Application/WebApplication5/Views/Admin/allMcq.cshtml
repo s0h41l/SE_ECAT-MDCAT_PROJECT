@@ -1,0 +1,163 @@
+﻿@model IEnumerable<WebApplication5.Models.McqViewModel>
+
+@{
+    ViewBag.Title = "allMcq";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+<h2>allMcq</h2>
+
+
+
+
+
+<div class="content-page">
+
+    <!-- Start content -->
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Add Exam</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Home</li>
+                            <li class="breadcrumb-item active">Add Exam</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
+
+            <table class="table table-responsive">
+                <tr>
+
+
+                    
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.Question)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionC)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CorrectOption)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Exam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Chapter)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EntryDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Upvotes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Downvotes)
+                    </th>
+                   
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Question)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OptionA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OptionB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OptionC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OptionD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CorrectOption)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Exam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chapter)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EntryDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Upvotes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Downvotes)
+                        </td>
+                       
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            <a href="~/Admin/deleteMcq/@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+
+
+
+
+
+        </div>
+        <!-- end row -->
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+		</div>

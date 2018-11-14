@@ -188,6 +188,48 @@ namespace WebApplication5.Controllers
 
 
 
+        public ActionResult allMcq()
+        {
+            List<Mcq> mcqs = (new DBEntities()).Mcqs.ToList<Mcq>();
+            List<McqViewModel> mcqview = new List<McqViewModel>();
+            foreach (Mcq i in mcqs)
+            {
+                McqViewModel obj = new McqViewModel()
+                {
+                    Id=i.Id,
+                    Question=i.Question,
+                    OptionA=i.OptionA,
+                    OptionB=i.OptionB,
+                    OptionC=i.OptionC,
+                    OptionD=i.OptionD,
+                    CorrectOption=i.CorrectOption,
+                    Exam=getExamType(i.ExamId),
+                    ChapterId=Convert.ToInt32(i.ChapterId),
+                    SubjectId=Convert.ToInt32(i.SubjectId),
+                    Upvotes=Convert.ToInt32(i.UpVotes),
+                    Downvotes=Convert.ToInt32(i.DownVotes),
+                    Status=i.Status
+                   
+                };
+                mcqview.Add(obj);
+
+            }
+
+            
+            return View(mcqview);
+        }
+
+
+
+        public ActionResult deleteMcq(int id)
+        {
+            DBEntities db = new DBEntities();
+            Mcq mcq = db.Mcqs.Where(x => x.Id == id).First();
+            return Content(mcq.Question.ToString());
+        }
+
+
+
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
@@ -263,6 +305,13 @@ namespace WebApplication5.Controllers
             {
                 return View();
             }
+        }
+
+        public string getExamType(int? id)
+        {
+            DBEntities db = new DBEntities();
+            var obj = db.Exams.Where(x => x.Id == id).First();
+            return obj.Name;
         }
     }
 }
