@@ -128,6 +128,9 @@ namespace WebApplication5.Controllers
 
         public ActionResult addExam()
         {
+            DBEntities db = new DBEntities();
+            var exams = db.Exams.ToList<Exam>();
+            ViewData["exams"] = exams;
 
             return View(new ExamViewModel());
         }
@@ -142,10 +145,22 @@ namespace WebApplication5.Controllers
             return Json(new Exam() { Name = collection.Name }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult deleteExam(int? id)
+        {
+            DBEntities db = new DBEntities();
+            var exam = db.Exams.Where(x => x.Id == id).First();
+            db.Entry(exam).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return Content("Deleted");
+        }
+
 
 
         public ActionResult addSubject()
         {
+            DBEntities db = new DBEntities();
+            List<Subject> subjects = db.Subjects.ToList<Subject>();
+            ViewData["subjects"] = subjects;
            return View(new SubjectViewModel());
         }
 
@@ -164,8 +179,9 @@ namespace WebApplication5.Controllers
 
         public ActionResult addChapter()
         {
-
-
+            DBEntities db = new DBEntities();
+            var chapters = db.Chapters.ToList<Chapter>();
+            ViewData["chapters"] = chapters;
             return View(new ChapterViewModel());
         }
 
@@ -228,6 +244,79 @@ namespace WebApplication5.Controllers
             return Content(mcq.Question.ToString());
         }
 
+
+        public ActionResult deleteChapter(int? id)
+        {
+            DBEntities db = new DBEntities();         
+            List<Mcq> mcq = db.Mcqs.Where(x => x.ChapterId == id).ToList<Mcq>();
+            foreach(Mcq i in mcq)
+            {
+                db.Entry(i).State = System.Data.Entity.EntityState.Deleted;
+            }
+            db.SaveChanges();
+            Chapter chapter = db.Chapters.Where(x => x.Id == id).First();
+            db.Entry(chapter).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("addChapter", "Admin");
+        }
+
+
+
+        public ActionResult deleteSubject(int? id)
+        {
+            DBEntities db = new DBEntities();
+            Subject subject = db.Subjects.Where(x => x.Id == id).First();
+          
+            List<Mcq> mcq = db.Mcqs.Where(x => x.SubjectId == subject.Id).ToList<Mcq>();
+            foreach(Mcq i in mcq)
+            {
+                db.Entry(i).State = System.Data.Entity.EntityState.Deleted;
+               
+            }
+            
+            List<Chapter> chapters = db.Chapters.Where(x => x.SubjectId == subject.Id).ToList<Chapter>();
+            foreach(Chapter i in chapters)
+            {
+                db.Entry(i).State = System.Data.Entity.EntityState.Deleted;
+            }
+            db.Entry(subject).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("addSubject","Admin");
+            
+        }
+
+        public ActionResult viewMessagaes()
+        {
+            DBEntities db = new DBEntities();
+            List<Message> messages = db.Messages.ToList<Message>();
+            List<MessageViewModel> msg = new List<MessageViewModel>();
+            foreach(Message i in messages)
+            {
+                MessageViewModel obj = new MessageViewModel()
+                {
+                    Id = i.Id,
+                    Subject = i.Subject,
+                    Message = i.Message1,
+                    Time = Convert.ToDateTime(i.Date)
+                };
+
+                msg.Add(obj);
+
+            }
+
+
+            return View(msg);
+        }
+
+
+        public ActionResult deleteMessage(int? id)
+        {
+            DBEntities db = new DBEntities();
+            var message = db.Messages.Where(x => x.Id == id).First();
+            db.Entry(message).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("viewMessagaes","Admin");
+        }
 
 
         // GET: Admin/Details/5

@@ -48,6 +48,29 @@
 
             </form>
 
+            <div class="mt-4">
+                <table class="table">
+                    <thead>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in ViewData["subjects"] as List<Subject>)
+                        {
+
+                            <tr>
+                                <td>@i.Id</td>
+                                <td>@i.Name</td>
+                                <td><a href="~/Admin/deleteSubject/@i.Id">Delete</a></td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
 
         </div>
 

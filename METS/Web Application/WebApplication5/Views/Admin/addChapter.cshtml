@@ -74,7 +74,38 @@
 
             </form>
 
+
+            <div class="">
+                <table class="table table-bordered table-info table-striped">
+                    <thead>
+                    <th>Id</th>
+                    <th>Chapter No</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in ViewData["chapters"] as List<Chapter>)
+                        {
+
+                            <tr>
+                                <td>@i.Id</td>
+                                <td>@i.ChapterNo</td>
+                                <td>@i.Name</td>
+                                <td><a class="nav-link" href="~/Admin/deleteChapter/@i.Id">Delete</a></td>
+                            </tr>
+
+
+                        }
+                        
+                        
+                    </tbody>
+
+                </table>
+            </div>
+
+
         </div>
+        
         <!-- end row -->
 
 
