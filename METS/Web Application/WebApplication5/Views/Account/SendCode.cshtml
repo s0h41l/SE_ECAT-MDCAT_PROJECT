@@ -1,6 +1,7 @@
 ﻿@model WebApplication5.Models.SendCodeViewModel
 @{
     ViewBag.Title = "Send";
+    Layout = "~/Views/Shared/_front_layout.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -19,6 +20,3 @@
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

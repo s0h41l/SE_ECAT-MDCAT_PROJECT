@@ -20,13 +20,13 @@ namespace WebApplication5
             this.Mcqs = new HashSet<Mcq>();
         }
     
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> SubjectId { get; set; }
-        public Nullable<int> ChapterNo { get; set; }
+        public Nullable<long> SubjectId { get; set; }
+        public Nullable<long> ChapterNo { get; set; }
     
+        public virtual Subject Subject { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mcq> Mcqs { get; set; }
-        public virtual Subject Subject { get; set; }
     }
 }

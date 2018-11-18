@@ -20,18 +20,18 @@ namespace WebApplication5
             this.Submissions = new HashSet<Submission>();
         }
     
-        public int Id { get; set; }
-        public Nullable<int> SubjectId { get; set; }
-        public Nullable<int> ChapterId { get; set; }
-        public Nullable<int> ExamId { get; set; }
+        public long Id { get; set; }
+        public Nullable<long> SubjectId { get; set; }
+        public Nullable<long> ChapterId { get; set; }
+        public Nullable<long> ExamId { get; set; }
         public string Question { get; set; }
         public string OptionA { get; set; }
         public string OptionB { get; set; }
         public string OptionC { get; set; }
         public string OptionD { get; set; }
         public string CorrectOption { get; set; }
-        public Nullable<int> UpVotes { get; set; }
-        public Nullable<int> DownVotes { get; set; }
+        public Nullable<long> UpVotes { get; set; }
+        public Nullable<long> DownVotes { get; set; }
         public string Status { get; set; }
         public Nullable<System.DateTime> EntryDate { get; set; }
     

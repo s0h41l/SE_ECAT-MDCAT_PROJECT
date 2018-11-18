@@ -14,7 +14,7 @@ namespace WebApplication5
     
     public partial class Message
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string UserID { get; set; }
         public string Subject { get; set; }
         public string Message1 { get; set; }

@@ -8,7 +8,7 @@ namespace WebApplication5.Models
 {
     public class McqViewModel
     {
-        public int? Id { get; set; }
+        public long Id { get; set; }
         [Required]
         public int SubjectId { get; set; }
         [Required]

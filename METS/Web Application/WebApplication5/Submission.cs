@@ -14,9 +14,9 @@ namespace WebApplication5
     
     public partial class Submission
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string UserID { get; set; }
-        public Nullable<int> McqId { get; set; }
+        public Nullable<long> McqId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Mcq Mcq { get; set; }

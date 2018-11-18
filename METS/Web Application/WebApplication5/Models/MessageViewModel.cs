@@ -7,7 +7,7 @@ namespace WebApplication5.Models
 {
     public class MessageViewModel
     {
-        public int? Id { get; set; }
+        public long Id { get; set; }
         public int? User { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }

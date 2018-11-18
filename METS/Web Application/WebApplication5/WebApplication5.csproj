@@ -198,19 +198,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Chapter.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -218,35 +218,36 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Exam.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mcq.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Message.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelEntity.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEntity.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEntity.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Microsoft\AspNet\Identity\UserManager.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChapterViewModel.cs" />
     <Compile Include="Models\ExamViewModel.cs" />
@@ -257,43 +258,34 @@
     <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Subject.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Submission.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserRole.cs">
-      <DependentUpon>ModelEntity.tt</DependentUpon>
+      <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DBEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBEntities.edmx</DependentUpon>
+      <LastGenOutput>DBEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBEntities.edmx</DependentUpon>
+      <LastGenOutput>DBEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ModelEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEntity.edmx</DependentUpon>
-      <LastGenOutput>ModelEntity.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEntity.edmx</DependentUpon>
-      <LastGenOutput>ModelEntity.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -301,12 +293,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="ModelEntity.edmx">
+    <EntityDeploy Include="DBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ModelEntity.edmx.diagram">
-      <DependentUpon>ModelEntity.edmx</DependentUpon>
+    <Content Include="DBEntities.edmx.diagram">
+      <DependentUpon>DBEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -368,6 +360,8 @@
     <Content Include="Views\Admin\viewMessagaes.cshtml" />
     <Content Include="Views\Admin\pendingMcq.cshtml" />
     <Content Include="Views\Admin\allUsers.cshtml" />
+    <Content Include="Views\Shared\_adminLoginPartialView.cshtml" />
+    <Content Include="Views\Admin\changePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

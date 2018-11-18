@@ -7,12 +7,15 @@ using WebApplication5.Models;
 
 namespace WebApplication5.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
         public ActionResult Index()
         {
-            DBEntities db = new DBEntities();
+            
+           
+            DBEnt db = new DBEnt();
             var mcqs = db.Mcqs.Count().ToString();
             var users = db.AspNetUsers.Count().ToString();
             var messages = db.Messages.Count().ToString();
@@ -28,7 +31,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult pendingMcq()
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             var mcqs = db.Mcqs.Where(x => x.Status != "approve").ToList<Mcq>();
             List<McqViewModel> mcq = new List<McqViewModel>();
             foreach(Mcq i in mcqs)
@@ -62,7 +65,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult subjects()
         {
-            List<Subject> subjects = (new DBEntities()).Subjects.ToList<Subject>();
+            List<Subject> subjects = (new DBEnt()).Subjects.ToList<Subject>();
             List<Subject> sub = new List<Subject>();
             foreach(Subject i in subjects)
             {
@@ -81,7 +84,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult exams()
         {
-            List<Exam> exams = (new DBEntities()).Exams.ToList<Exam>();
+            List<Exam> exams = (new DBEnt()).Exams.ToList<Exam>();
             List<Exam> exm = new List<Exam>();
             foreach(Exam i in exams)
             {
@@ -99,7 +102,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult chapters(int id)
         {
-            List<Chapter> chapters = (new DBEntities()).Chapters.Where(x => x.SubjectId == id).ToList<Chapter>();
+            List<Chapter> chapters = (new DBEnt()).Chapters.Where(x => x.SubjectId == id).ToList<Chapter>();
             List<Chapter> chaps = new List<Chapter>();
             foreach(Chapter i in chapters)
             {
@@ -145,7 +148,7 @@ namespace WebApplication5.Controllers
                 EntryDate = DateTime.Now,
                
             };
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             db.Mcqs.Add(mcq);
             db.SaveChanges();
             return Json(mcq,JsonRequestBehavior.AllowGet);
@@ -154,7 +157,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult addExam()
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             var exams = db.Exams.ToList<Exam>();
             ViewData["exams"] = exams;
 
@@ -165,7 +168,7 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult addExam(ExamViewModel collection)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             db.Exams.Add(new Exam() { Name = collection.Name });
             db.SaveChanges();
             return Json(new Exam() { Name = collection.Name }, JsonRequestBehavior.AllowGet);
@@ -173,7 +176,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult deleteExam(int? id)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             var exam = db.Exams.Where(x => x.Id == id).First();
             db.Entry(exam).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
@@ -184,7 +187,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult addSubject()
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             List<Subject> subjects = db.Subjects.ToList<Subject>();
             ViewData["subjects"] = subjects;
            return View(new SubjectViewModel());
@@ -194,7 +197,7 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult addSubject(SubjectViewModel collection)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             db.Subjects.Add(new Subject() { Name = collection.Name });
             db.SaveChanges();
             return Json(new Subject() { Name = collection.Name }, JsonRequestBehavior.AllowGet);
@@ -205,7 +208,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult addChapter()
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             var chapters = db.Chapters.ToList<Chapter>();
             ViewData["chapters"] = chapters;
             return View(new ChapterViewModel());
@@ -215,7 +218,7 @@ namespace WebApplication5.Controllers
         public ActionResult addChapter(ChapterViewModel collection)
         {
             
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             Chapter chapter = new Chapter()
             {
                 SubjectId=collection.SubjectId,
@@ -232,7 +235,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult allMcq()
         {
-            List<Mcq> mcqs = (new DBEntities()).Mcqs.ToList<Mcq>();
+            List<Mcq> mcqs = (new DBEnt()).Mcqs.ToList<Mcq>();
             List<McqViewModel> mcqview = new List<McqViewModel>();
             foreach (Mcq i in mcqs)
             {
@@ -263,16 +266,16 @@ namespace WebApplication5.Controllers
 
         public ActionResult allUsers()
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             List<AspNetUser> users = db.AspNetUsers.ToList<AspNetUser>();
             List<UserViewModel> usr = new List<UserViewModel>();
             foreach(AspNetUser i in users)
             {
                 UserViewModel obj = new UserViewModel()
                 {
+                    Id=i.Id,
                     UserName = i.UserName,
                     Email = i.Email,
-                    Role=getRole(i.RoleId)
                 };
                 usr.Add(obj);
             }
@@ -280,11 +283,43 @@ namespace WebApplication5.Controllers
             return View(usr);
         }
 
+        public ActionResult deleteUser(string id)
+        {
+            DBEnt db = new DBEnt();
+            
+            var user = db.AspNetUsers.Where(x => x.Id == id).FirstOrDefault();
+            List<AspNetRole> roles=user.AspNetRoles.ToList();
+            try
+            {
+                if (roles.FirstOrDefault().Name == "Admin")
+                {
+                    return Content("Admin cannot be deleted!");
+                }
+                if (roles.FirstOrDefault().Name != "Admin")
+                {
+                    db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                    return RedirectToAction("allUsers", "Admin");
+                }
+            }
+            catch
+            {
+                db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                return RedirectToAction("allUsers", "Admin");
+            }
+
+            return Content("WTH");
+            
+        }
+
+
+        
 
 
         public ActionResult deleteMcq(int id)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             Mcq mcq = db.Mcqs.Where(x => x.Id == id).First();
             db.Entry(mcq).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
@@ -294,7 +329,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult deleteChapter(int? id)
         {
-            DBEntities db = new DBEntities();         
+            DBEnt db = new DBEnt();         
             List<Mcq> mcq = db.Mcqs.Where(x => x.ChapterId == id).ToList<Mcq>();
             foreach(Mcq i in mcq)
             {
@@ -311,7 +346,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult deleteSubject(int? id)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             Subject subject = db.Subjects.Where(x => x.Id == id).First();
           
             List<Mcq> mcq = db.Mcqs.Where(x => x.SubjectId == subject.Id).ToList<Mcq>();
@@ -334,7 +369,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult viewMessagaes()
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             List<Message> messages = db.Messages.ToList<Message>();
             List<MessageViewModel> msg = new List<MessageViewModel>();
             foreach(Message i in messages)
@@ -358,7 +393,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult deleteMessage(int? id)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             var message = db.Messages.Where(x => x.Id == id).First();
             db.Entry(message).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
@@ -443,18 +478,18 @@ namespace WebApplication5.Controllers
             }
         }
 
-        public string getExamType(int? id)
+        public string getExamType(long? id)
         {
-            DBEntities db = new DBEntities();
+            DBEnt db = new DBEnt();
             var obj = db.Exams.Where(x => x.Id == id).First();
             return obj.Name;
         }
 
-        public string getRole(int? id)
+       /* public string getRole(int? id)
         {
             try
             {
-                DBEntities db = new DBEntities();
+                DBEnt db = new DBEnt();
                 var user = db.UserRoles.Where(x => x.Id == id).First();
                 return user.Name;
             }
@@ -463,6 +498,6 @@ namespace WebApplication5.Controllers
                 return "Invalid";
             }
 
-        }
+        }*/
     }
 }

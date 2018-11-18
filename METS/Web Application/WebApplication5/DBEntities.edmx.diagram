@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d1f3fc5f58934b0f835d5d0f2ef9385c" Name="Diagram1">
+        <EntityTypeShape EntityType="DBEntities.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.AspNetRole" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.AspNetUser" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Chapter" Width="1.5" PointX="3.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Exam" Width="1.5" PointX="3.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Mcq" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Message" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Subject" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Submission" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DBEntities.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Messages_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Submissions_Submissions" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Chapters_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Mcqs_Chapters" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Mcqs_Exams" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Mcqs_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.FK_Submissions_Mcqs" ManuallyRouted="false" />
+        <AssociationConnector Association="DBEntities.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
