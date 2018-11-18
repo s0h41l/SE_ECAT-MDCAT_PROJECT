@@ -26,10 +26,37 @@ namespace WebApplication5.Controllers
             return View();
         }
 
-        public ActionResult json()
+        public ActionResult pendingMcq()
         {
-            return Json(new { key = "yoyoy", value = "hello" }, JsonRequestBehavior.AllowGet);
+            DBEntities db = new DBEntities();
+            var mcqs = db.Mcqs.Where(x => x.Status != "approve").ToList<Mcq>();
+            List<McqViewModel> mcq = new List<McqViewModel>();
+            foreach(Mcq i in mcqs)
+            {
+                McqViewModel obj = new McqViewModel()
+                {
+                    Id=i.Id,
+                    Question=i.Question,
+                    OptionA=i.OptionA,
+                    OptionB=i.OptionB,
+                    OptionC=i.OptionC,
+                    OptionD=i.OptionD,
+                    CorrectOption=i.CorrectOption,
+                    ExamId=Convert.ToInt16(i.ExamId),
+                    ChapterId=Convert.ToInt16(i.ChapterId),
+                    Status=i.Status,
+                    Upvotes=Convert.ToInt16(i.UpVotes),
+                    Downvotes=Convert.ToInt16(i.DownVotes),
+                    EntryDate=Convert.ToDateTime(i.EntryDate)
+
+                };
+                mcq.Add(obj);
+            }
+            return View(mcq);
+
         }
+
+       
 
 
 
@@ -118,7 +145,6 @@ namespace WebApplication5.Controllers
                 EntryDate = DateTime.Now,
                
             };
-
             DBEntities db = new DBEntities();
             db.Mcqs.Add(mcq);
             db.SaveChanges();
@@ -151,7 +177,7 @@ namespace WebApplication5.Controllers
             var exam = db.Exams.Where(x => x.Id == id).First();
             db.Entry(exam).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
-            return Content("Deleted");
+            return RedirectToAction("AddExam", "Admin");
         }
 
 
@@ -235,12 +261,33 @@ namespace WebApplication5.Controllers
             return View(mcqview);
         }
 
+        public ActionResult allUsers()
+        {
+            DBEntities db = new DBEntities();
+            List<AspNetUser> users = db.AspNetUsers.ToList<AspNetUser>();
+            List<UserViewModel> usr = new List<UserViewModel>();
+            foreach(AspNetUser i in users)
+            {
+                UserViewModel obj = new UserViewModel()
+                {
+                    UserName = i.UserName,
+                    Email = i.Email,
+                    Role=getRole(i.RoleId)
+                };
+                usr.Add(obj);
+            }
+
+            return View(usr);
+        }
+
 
 
         public ActionResult deleteMcq(int id)
         {
             DBEntities db = new DBEntities();
             Mcq mcq = db.Mcqs.Where(x => x.Id == id).First();
+            db.Entry(mcq).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
             return Content(mcq.Question.ToString());
         }
 
@@ -401,6 +448,21 @@ namespace WebApplication5.Controllers
             DBEntities db = new DBEntities();
             var obj = db.Exams.Where(x => x.Id == id).First();
             return obj.Name;
+        }
+
+        public string getRole(int? id)
+        {
+            try
+            {
+                DBEntities db = new DBEntities();
+                var user = db.UserRoles.Where(x => x.Id == id).First();
+                return user.Name;
+            }
+            catch
+            {
+                return "Invalid";
+            }
+
         }
     }
 }

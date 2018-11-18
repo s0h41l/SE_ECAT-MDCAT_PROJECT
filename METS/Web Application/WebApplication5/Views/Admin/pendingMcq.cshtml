@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<WebApplication5.Models.McqViewModel>
 
 @{
-    ViewBag.Title = "allMcq";
+    ViewBag.Title = "pendingMcq";
     Layout = "~/Views/Shared/_admin_layout.cshtml";
 }
-
-<h2>allMcq</h2>
-
 
 
 
@@ -21,10 +18,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb-holder">
-                        <h1 class="main-title float-left">All MCQS</h1>
+                        <h1 class="main-title float-left">Pending MCQS</h1>
                         <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">All MMCQS</li>
+                            <li class="breadcrumb-item">Pending MCQS</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -36,6 +32,15 @@
 
             <table class="table table-responsive">
                 <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubjectId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChapterId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ExamId)
+                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Question)
                     </th>
@@ -54,16 +59,6 @@
                     <th>
                         @Html.DisplayNameFor(model => model.CorrectOption)
                     </th>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.Exam)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Subject)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Chapter)
-                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
@@ -76,15 +71,30 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Downvotes)
                     </th>
-                   
-                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Exam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Chapter)
+                    </th>
+                    <th>Action</th>
                 </tr>
 
                 @foreach (var item in Model)
                 {
                     <tr>
-                        
-                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChapterId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExamId)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Question)
                         </td>
@@ -104,15 +114,6 @@
                             @Html.DisplayFor(modelItem => item.CorrectOption)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Exam)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Subject)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Chapter)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
@@ -124,8 +125,17 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Downvotes)
                         </td>
-                       
                         <td>
+                            @Html.DisplayFor(modelItem => item.Exam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chapter)
+                        </td>
+                        <td>
+
                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                             <a href="~/Admin/deleteMcq/@item.Id">Delete</a>
@@ -134,9 +144,6 @@
                 }
 
             </table>
-
-
-
 
 
 
@@ -157,3 +164,8 @@
 </div>
 
 		</div>
+
+
+
+
+

@@ -237,7 +237,7 @@
                             <ul class="list-unstyled">
                                 <li><a href="~/Admin/AddMcq">Add MCQS</a></li>
                                 <li><a href="~/Admin/AllMcq">All MCQS</a></li>
-                                <li><a href="pending_mcq.html">Pending MCQS</a></li>
+                                <li><a href="~/Admin/pendingMcq">Pending MCQS</a></li>
                                 <li><a href="~/Admin/AddChapter">Add Chapters</a></li>
                                 <li><a href="~/Admin/AddSubject">Add Subject</a></li>
                                 <li><a href="~/Admin/AddExam">Add Exam</a></li>
@@ -245,7 +245,7 @@
                         </li>
 
                         <li class="submenu">
-                            <a href="all_user.html"><i class="fa fa-fw fa-users"></i><span> Users </span> </a>
+                            <a href="~/Admin/allUsers"><i class="fa fa-fw fa-users"></i><span> Users </span> </a>
                         </li>
 
                         <li class="submenu">
@@ -256,8 +256,6 @@
                             <a href="#"><i class="fa fa-fw fa-cog"></i> <span> Settings </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
                                 <li><a href="#">Password Update</a></li>
-                                <li><a href="#">Privacy Settings</a></li>
-
                             </ul>
                         </li>
 
@@ -367,10 +365,11 @@
                     type: "GET",
                     url: link,
                     success: function (data) {
+                        console.log(data)
                         var html = '';
                         $.each(data, function (key, value) {
                             html += '<option value="%val%">%name%</option>';
-                            html = html.replace("%val%", value.ChapterNo);
+                            html = html.replace("%val%", value.Id);
                             html = html.replace("%name%", "CH " + value.ChapterNo +" "+ value.Name);
                         });
                         $('#chapter').html(html);

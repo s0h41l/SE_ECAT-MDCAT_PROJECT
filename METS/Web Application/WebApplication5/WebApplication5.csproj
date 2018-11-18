@@ -255,6 +255,7 @@
     <Compile Include="Models\McqViewModel.cs" />
     <Compile Include="Models\MessageViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>ModelEntity.tt</DependentUpon>
@@ -365,6 +366,8 @@
     <Content Include="Views\Admin\addChapter.cshtml" />
     <Content Include="Views\Admin\allMcq.cshtml" />
     <Content Include="Views\Admin\viewMessagaes.cshtml" />
+    <Content Include="Views\Admin\pendingMcq.cshtml" />
+    <Content Include="Views\Admin\allUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
