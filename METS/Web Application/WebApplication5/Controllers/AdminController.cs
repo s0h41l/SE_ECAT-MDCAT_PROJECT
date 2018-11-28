@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -169,7 +170,18 @@ namespace WebApplication5.Controllers
         public ActionResult addExam(ExamViewModel collection)
         {
             DBEnt db = new DBEnt();
-            db.Exams.Add(new Exam() { Name = collection.Name });
+
+            string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+            string ext = Path.GetExtension(collection.Image.FileName);
+            filename = filename + DateTime.Now.Millisecond.ToString();
+            filename = filename + ext;
+            string filetodb = "/Image/" + filename;
+            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+
+            collection.Image.SaveAs(filename);
+            collection.Cover = filetodb;
+
+            db.Exams.Add(new Exam() { Name = collection.Name,Cover=collection.Cover });
             db.SaveChanges();
             return Json(new Exam() { Name = collection.Name }, JsonRequestBehavior.AllowGet);
         }
@@ -198,6 +210,17 @@ namespace WebApplication5.Controllers
         public ActionResult addSubject(SubjectViewModel collection)
         {
             DBEnt db = new DBEnt();
+
+            string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+            string ext = Path.GetExtension(collection.Image.FileName);
+            filename = filename + DateTime.Now.Millisecond.ToString();
+            filename = filename + ext;
+            string filetodb = "/Image/" + filename;
+            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+
+            collection.Image.SaveAs(filename);
+            collection.Cover = filetodb;
+
             db.Subjects.Add(new Subject() { Name = collection.Name });
             db.SaveChanges();
             return Json(new Subject() { Name = collection.Name }, JsonRequestBehavior.AllowGet);

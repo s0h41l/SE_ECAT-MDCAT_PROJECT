@@ -69,6 +69,7 @@
     <EntitySetMapping Name="Exams">
       <EntityTypeMapping TypeName="DBEntities.Exam">
         <MappingFragment StoreEntitySet="Exams">
+          <ScalarProperty Name="Cover" ColumnName="Cover" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
@@ -109,6 +110,7 @@
     <EntitySetMapping Name="Subjects">
       <EntityTypeMapping TypeName="DBEntities.Subject">
         <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="Cover" ColumnName="Cover" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>

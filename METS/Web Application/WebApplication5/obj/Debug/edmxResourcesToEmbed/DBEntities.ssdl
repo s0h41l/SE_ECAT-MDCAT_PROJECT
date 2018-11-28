@@ -76,6 +76,7 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="Cover" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Mcqs">
     <Key>
@@ -113,6 +114,7 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="Cover" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Submissions">
     <Key>
