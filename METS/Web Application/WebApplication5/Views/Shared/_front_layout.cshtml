@@ -44,7 +44,12 @@
                                         <li><a href="#Resources">Subjects</a></li>
                                         <li><a href="#Resources">Exams</a></li>
                                         <li><a href="members.html">Members Area</a></li>
-                                        <li><a data-toggle="modal" href="" data-target="#contribute">Contribute</a></li>
+                                        @if (Request.IsAuthenticated)
+                                        {
+
+                                            <li><a data-toggle="modal" href="" data-target="#contribute">Contribute</a></li>
+
+                                        }
                                         <li><a data-toggle="modal" href="" data-target="#contact">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -221,7 +226,7 @@
 
 
 
-        <div class="modal fade container-fluid" id="contribute" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="contribute" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -264,7 +269,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group my-2 w-25">
+                                <div class="ml-2 form-group my-2 w-50">
                                     <label for="">Correct Option</label>
                                     <select class="form-control" name="" id="">
                                         <option value="">A</option>
@@ -273,29 +278,36 @@
                                         <option value="">D</option>
                                     </select>
                                 </div>
-                                <div class="form-group my-2 w-25">
-                                    <label for="">Subject</label>
-                                    <select class="form-control" name="" id="">
-                                        <option value="">Physics</option>
-                                        <option value="">Chemistry</option>
-                                        <option value="">Mathematics</option>
-                                        <option value="">Biology</option>
-                                        <option value="">English</option>
-                                    </select>
+                                
 
+                                <div class="ml-2 form-group w-50">
+                                    <label for="exam">Exam</label>
+                                    <div class="col-md10">
+
+                                        <select name="ExamId" id="exam" class="form-control" required></select>
+                                    </div>
 
                                 </div>
 
-                                <div class="form-group my-2 w-25">
-                                    <label for="">Exam</label>
-                                    <select class="form-control" name="" id="">
-                                        <option value="">ECAT</option>
-                                        <option value="">MDCAT</option>
-                                        <option value="">BOTH</option>
+                                <div class="ml-2 form-group w-50">
+                                    <label for="exam">Subject</label>
+                                    <div class="col-md10">
 
-                                    </select>
+                                        <select name="SubjectId" id="subject" class="form-control" required>
+                                            <option value="1">Physics</option>
+                                        </select>
+                                    </div>
 
+                                </div>
 
+                                <div class="ml-2 form-group w-50">
+                                    <label for="exam">Chapter</label>
+                                    <div class="col-md10">
+
+                                        <select name="ChapterId" id="chapter" class="form-control" required>
+                                            <option value="1">Intro</option>
+                                        </select>
+                                    </div>
 
                                 </div>
                             </div>
@@ -492,6 +504,51 @@
 
 
             });
+
+
+        });
+
+
+
+
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:1771/Admin/subjects",
+                success: function (data) {
+                    var html = '';
+                    $.each(data, function (key, value) {
+                        html += '<option value="%val%">%name%</option>';
+                        html = html.replace("%val%", value.Id);
+                        html = html.replace("%name%", value.Name);
+                    });
+                    $("#subject").html(html);
+
+                }
+            });
+
+
+        });
+
+
+        $("#subject").on('click', function () {
+            var link = "http://localhost:1771/Admin/chapters/" + this.value;
+            $.ajax({
+                type: "GET",
+                url: link,
+                success: function (data) {
+                    console.log(data)
+                    var html = '';
+                    $.each(data, function (key, value) {
+                        html += '<option value="%val%">%name%</option>';
+                        html = html.replace("%val%", value.Id);
+                        html = html.replace("%name%", "CH " + value.ChapterNo + " " + value.Name);
+                    });
+                    $('#chapter').html(html);
+                }
+            });
+
 
 
         });

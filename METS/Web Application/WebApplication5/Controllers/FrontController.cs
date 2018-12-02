@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication5.Models;
+
 
 namespace WebApplication5.Controllers
 {
@@ -15,6 +18,42 @@ namespace WebApplication5.Controllers
 
             return View();
         }
+
+        //Open Source Submission
+
+        public ActionResult addOpenSpurceMcq(McqViewModel collection)
+        {
+
+            Mcq mcq = new Mcq()
+            {
+                ExamId = collection.ExamId,
+                SubjectId = collection.SubjectId,
+                ChapterId = collection.ChapterId,
+                Question = collection.Question,
+                OptionA = collection.OptionA,
+                OptionB = collection.OptionB,
+                OptionC = collection.OptionC,
+                OptionD = collection.OptionD,
+                CorrectOption = collection.CorrectOption,
+                UpVotes = 5,
+                DownVotes = 0,
+                Status = "pending",
+                EntryDate = DateTime.Now,
+
+            };
+            string userId = User.Identity.GetUserId().ToString();
+            DBEnt db = new DBEnt();
+            db.Mcqs.Add(mcq);
+            db.SaveChanges();
+            return Json(mcq, JsonRequestBehavior.AllowGet);
+
+
+
+            return null;
+
+        }
+        
+        
 
         // GET: Front/Details/5
         public ActionResult Details(int id)

@@ -255,19 +255,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Submissions_Mcqs">
-          <End Role="Mcqs" Type="Self.Mcqs" Multiplicity="0..1" />
-          <End Role="Submissions" Type="Self.Submissions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mcqs">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Submissions">
-              <PropertyRef Name="McqId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Submissions_Submissions">
+        <Association Name="FK_Submissions_Submissions_MCQ">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Submissions" Type="Self.Submissions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -276,6 +264,18 @@
             </Principal>
             <Dependent Role="Submissions">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Submissions_Submissions_User">
+          <End Role="Mcqs" Type="Self.Mcqs" Multiplicity="0..1" />
+          <End Role="Submissions" Type="Self.Submissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mcqs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Submissions">
+              <PropertyRef Name="McqId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -329,12 +329,12 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
-          <AssociationSet Name="FK_Submissions_Mcqs" Association="Self.FK_Submissions_Mcqs">
-            <End Role="Mcqs" EntitySet="Mcqs" />
+          <AssociationSet Name="FK_Submissions_Submissions_MCQ" Association="Self.FK_Submissions_Submissions_MCQ">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Submissions" EntitySet="Submissions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Submissions_Submissions" Association="Self.FK_Submissions_Submissions">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          <AssociationSet Name="FK_Submissions_Submissions_User" Association="Self.FK_Submissions_Submissions_User">
+            <End Role="Mcqs" EntitySet="Mcqs" />
             <End Role="Submissions" EntitySet="Submissions" />
           </AssociationSet>
         </EntityContainer>

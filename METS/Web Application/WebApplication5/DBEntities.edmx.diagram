@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="DBEntities.Mcq" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DBEntities.Message" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="DBEntities.Subject" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBEntities.Submission" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBEntities.Submission" Width="1.875" PointX="8.875" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBEntities.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="DBEntities.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DBEntities.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
