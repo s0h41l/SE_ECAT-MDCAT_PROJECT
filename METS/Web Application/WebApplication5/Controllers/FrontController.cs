@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebApplication5.Controllers
 {
+    //Controller to make subscriber side management
     public class FrontController : Controller
     {
         // GET: Front
