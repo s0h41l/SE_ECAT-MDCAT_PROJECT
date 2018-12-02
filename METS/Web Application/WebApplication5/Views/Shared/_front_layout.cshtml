@@ -237,45 +237,45 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="" class="form mt-4">
+                        <form action="~/Front/addOpenSpurceMcq" class="form mt-4" method="post">
                             <div class="form-group my-2">
                                 <label for="question">Question</label>
-                                <input type="text" name="question" class="form-control">
+                                <input type="text" name="Question" class="form-control" required>
                             </div>
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                         <div class="input-group">
                                             <label class="mr-2 mt-2" for="">A</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="OptionA" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                         <div class="input-group">
                                             <label class="mr-2 mt-2" for="">B</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="OptionB" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                         <div class="input-group">
                                             <label class="mr-2 mt-2" for="">C</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="OptionC" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                         <div class="input-group">
                                             <label class="mr-2 mt-2" for="">D</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="OptionD" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ml-2 form-group my-2 w-50">
                                     <label for="">Correct Option</label>
-                                    <select class="form-control" name="" id="">
-                                        <option value="">A</option>
-                                        <option value="">B</option>
-                                        <option value="">C</option>
-                                        <option value="">D</option>
+                                    <select class="form-control" name="CorrectOption" required>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
                                     </select>
                                 </div>
                                 
