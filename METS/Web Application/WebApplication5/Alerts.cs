@@ -17,6 +17,7 @@ namespace WebApplication5
         public static bool addChapter = false;
         public static bool deleteChapter = false;
         public static bool deleteUser = false;
+        public static bool approve = false;
 
 
         public static bool alreadyExist = false;

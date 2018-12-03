@@ -10,5 +10,7 @@ namespace WebApplication5.Models
         public string Name { get; set; }
         public int SubjectId { get; set; }
         public int ChapterNo { get; set; }
+
+
     }
 }

@@ -43,8 +43,11 @@
 
 
 
-            <table class="table table-responsive">
-                <tr>
+            <div>
+
+                <table class="table table-bordered">
+                    
+                    <thead>
                     <th>
                         @Html.DisplayNameFor(model => model.Question)
                     </th>
@@ -63,15 +66,14 @@
                     <th>
                         @Html.DisplayNameFor(model => model.CorrectOption)
                     </th>
-
                     <th>
                         @Html.DisplayNameFor(model => model.Exam)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Subject)
+                        Subject
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Chapter)
+                        Chapter
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Status)
@@ -85,62 +87,65 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Downvotes)
                     </th>
-
                     <th>Ation</th>
-                </tr>
+                    </thead>
+      
 
-                @foreach (var item in Model)
-                {
-                    <tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Question)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionB)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionD)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CorrectOption)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Exam)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Chapter)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EntryDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Upvotes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Downvotes)
+                                </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Question)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OptionA)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OptionB)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OptionC)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OptionD)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CorrectOption)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Exam)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Subject)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Chapter)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EntryDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Upvotes)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Downvotes)
-                        </td>
+                                <td>
+                                    <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteMcq/@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
-                        <td>
-                            <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteMcq/@item.Id">Delete</a>
-                        </td>
-                    </tr>
-                }
+                </table>
 
-            </table>
+            </div>
 
 
 

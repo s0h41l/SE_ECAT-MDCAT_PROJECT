@@ -36,7 +36,6 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-                    <h4>ChapterViewModel</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
@@ -78,8 +77,8 @@
             </form>
 
 
-            <div class="">
-                <table class="table table-bordered table-info table-striped">
+            <div>
+                <table class="table table-bordered">
                     <thead>
                     <th>Id</th>
                     <th>Chapter No</th>

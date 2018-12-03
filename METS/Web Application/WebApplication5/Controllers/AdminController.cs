@@ -39,19 +39,21 @@ namespace WebApplication5.Controllers
             {
                 McqViewModel obj = new McqViewModel()
                 {
-                    Id=i.Id,
-                    Question=i.Question,
-                    OptionA=i.OptionA,
-                    OptionB=i.OptionB,
-                    OptionC=i.OptionC,
-                    OptionD=i.OptionD,
-                    CorrectOption=i.CorrectOption,
-                    ExamId=Convert.ToInt16(i.ExamId),
-                    ChapterId=Convert.ToInt16(i.ChapterId),
-                    Status=i.Status,
-                    Upvotes=Convert.ToInt16(i.UpVotes),
-                    Downvotes=Convert.ToInt16(i.DownVotes),
-                    EntryDate=Convert.ToDateTime(i.EntryDate)
+                    Id = i.Id,
+                    Question = i.Question,
+                    OptionA = i.OptionA,
+                    OptionB = i.OptionB,
+                    OptionC = i.OptionC,
+                    OptionD = i.OptionD,
+                    CorrectOption = i.CorrectOption,
+                    Exam = getExamType(i.ExamId),
+                    ChapterId = Convert.ToInt32(i.ChapterId),
+                    SubjectId = Convert.ToInt32(i.SubjectId),
+                    Upvotes = Convert.ToInt32(i.UpVotes),
+                    Downvotes = Convert.ToInt32(i.DownVotes),
+                    Status = i.Status,
+                    Subject = mcqSubject(i.Id),
+                    Chapter = mcqChapter(i.Id)
 
                 };
                 mcq.Add(obj);
@@ -267,6 +269,9 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult addChapter(ChapterViewModel collection)
         {
+
+
+
             
             DBEnt db = new DBEnt();
             Chapter chapter = new Chapter()
@@ -292,19 +297,23 @@ namespace WebApplication5.Controllers
             {
                 McqViewModel obj = new McqViewModel()
                 {
-                    Id=i.Id,
-                    Question=i.Question,
-                    OptionA=i.OptionA,
-                    OptionB=i.OptionB,
-                    OptionC=i.OptionC,
-                    OptionD=i.OptionD,
-                    CorrectOption=i.CorrectOption,
-                    Exam=getExamType(i.ExamId),
-                    ChapterId=Convert.ToInt32(i.ChapterId),
-                    SubjectId=Convert.ToInt32(i.SubjectId),
-                    Upvotes=Convert.ToInt32(i.UpVotes),
-                    Downvotes=Convert.ToInt32(i.DownVotes),
-                    Status=i.Status
+                    Id = i.Id,
+                    Question = i.Question,
+                    OptionA = i.OptionA,
+                    OptionB = i.OptionB,
+                    OptionC = i.OptionC,
+                    OptionD = i.OptionD,
+                    CorrectOption = i.CorrectOption,
+                    Exam = getExamType(i.ExamId),
+                    ChapterId = Convert.ToInt32(i.ChapterId),
+                    SubjectId = Convert.ToInt32(i.SubjectId),
+                    Upvotes = Convert.ToInt32(i.UpVotes),
+                    Downvotes = Convert.ToInt32(i.DownVotes),
+                    Status = i.Status,
+                    Subject = mcqSubject(i.Id),
+                    Chapter = mcqChapter(i.Id)
+                   
+                   
                    
                 };
                 mcqview.Add(obj);
@@ -457,6 +466,19 @@ namespace WebApplication5.Controllers
             return RedirectToAction("viewMessagaes","Admin");
         }
 
+        public ActionResult approveMcq(int? id)
+        {
+            DBEnt db = new DBEnt();
+            var mcq = db.Mcqs.Where(x => x.Id == id).First();
+            mcq.Status = "approve";
+            db.SaveChanges();
+            Alerts.approve = true;
+            return RedirectToAction("pendingMcq", "Admin");
+
+        }
+
+
+
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)
@@ -584,6 +606,24 @@ namespace WebApplication5.Controllers
             {
                 return false;
             }
+        }
+
+        public string mcqSubject(long id)
+        {
+            DBEnt db = new DBEnt();
+            var mcq = db.Mcqs.Where(x => x.Id == id).First();
+            var subject = db.Subjects.Where(x => x.Id == mcq.SubjectId).First();
+            return subject.Name;
+
+        }
+
+        public string mcqChapter(long id)
+        {
+            DBEnt db = new DBEnt();
+            var mcq = db.Mcqs.Where(x => x.Id == id).First();
+            var chap = db.Chapters.Where(x => x.Id == mcq.ChapterId).First();
+            return chap.ChapterNo.ToString();
+
         }
 
 

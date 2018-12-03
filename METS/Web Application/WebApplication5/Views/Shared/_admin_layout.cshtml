@@ -23,6 +23,13 @@
     <!-- Custom CSS -->
     <link href="/Content/admin/assets/css/style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/alertify.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    <script src="~/Scripts/Alertify.js"></script>
+
 
 
 
@@ -33,10 +40,23 @@
 
     <!--Alerts Section-->
 
+
+    @if (Alerts.approve)
+    {
+        <script>
+            alertify.success('MCQ approved');
+        </script>
+
+        Alerts.approve = false;
+
+    }
+
+
+
     @if (Alerts.addChapter)
     {
         <script>
-        alertify.success('Chapter Added');
+            alertify.success('Chapter Added');
         </script>
 
         Alerts.addChapter = false;
@@ -46,7 +66,7 @@
     @if (Alerts.deleteChapter)
     {
         <script>
-        alertify.success('Chapter Deleted');
+            alertify.success('Chapter Deleted');
         </script>
 
         Alerts.deleteChapter = false;
@@ -57,7 +77,7 @@
     @if (Alerts.addExam)
     {
         <script>
-        alertify.success('Exam Added');
+            alertify.success('Exam Added');
         </script>
         Alerts.addExam = false;
 
@@ -66,7 +86,7 @@
     @if (Alerts.deleteExam)
     {
         <script>
-        alertify.success('Exam Deleted');
+            alertify.success('Exam Deleted');
         </script>
 
         Alerts.deleteExam = false;
@@ -76,7 +96,7 @@
     @if (Alerts.addMcq)
     {
         <script>
-        alertify.success('MCQ Added');
+            alertify.success('MCQ Added');
         </script>
 
         Alerts.addMcq = false;
@@ -86,7 +106,7 @@
     @if (Alerts.deleteMcq)
     {
         <script>
-        alertify.success('MCQ Deleted');
+            alertify.success('MCQ Deleted');
         </script>
 
         Alerts.deleteMcq = false;
@@ -97,7 +117,7 @@
     @if (Alerts.addChapter)
     {
         <script>
-        alertify.success('Chapter Added');
+            alertify.success('Chapter Added');
         </script>
 
         Alerts.addChapter = false;
@@ -108,17 +128,17 @@
     @if (Alerts.addSubject)
     {
         <script>
-        alertify.success('Subject Added');
+            alertify.success('Subject Added');
         </script>
 
-        Alerts.addSubject=false;
+        Alerts.addSubject = false;
 
     }
 
     @if (Alerts.deleteSubject)
     {
         <script>
-        alertify.success('Subject Deleted');
+            alertify.success('Subject Deleted');
         </script>
 
         Alerts.deleteSubject = false;
@@ -129,9 +149,9 @@
     @if (Alerts.alreadyExist)
     {
         <script>
-        alertify.error('Subject Deleted');
+            alertify.error('Already Exist');
         </script>
-   
+
         Alerts.alreadyExist = false;
 
     }
@@ -412,7 +432,8 @@
 
     <script src="/Content/admin/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="/Content/admin/assets/plugins/counterup/jquery.counterup.min.js"></script>
-    <script src="~/Content/alertify.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
 
 
 
@@ -491,7 +512,13 @@
 
         });
 
-      
+
+
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+
+
 
 
 

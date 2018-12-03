@@ -53,7 +53,7 @@
             </form>
 
             <div class="mt-4">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <th>Id</th>
                         <th>Name</th>
@@ -67,6 +67,7 @@
                                 <td>@i.Id</td>
                                 <td>@i.Name</td>
                                 <td><a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteSubject/@i.Id">Delete</a></td>
+                                
                             </tr>
 
                         }
