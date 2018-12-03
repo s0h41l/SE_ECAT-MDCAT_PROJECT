@@ -18,6 +18,8 @@ namespace WebApplication5
         public static bool deleteChapter = false;
         public static bool deleteUser = false;
         public static bool approve = false;
+        public static bool openSubmit = false;
+        public static bool messageSent = false;
 
 
         public static bool alreadyExist = false;

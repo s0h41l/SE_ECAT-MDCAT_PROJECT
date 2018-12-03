@@ -41,18 +41,34 @@ namespace WebApplication5.Controllers
                 EntryDate = DateTime.Now,
 
             };
+
             string userId = User.Identity.GetUserId().ToString();
             DBEnt db = new DBEnt();
             db.Mcqs.Add(mcq);
+            db.Submissions.Add(new Submission() { UserID=User.Identity.GetUserId(),McqId=mcq.Id });
             db.SaveChanges();
-            return Json(mcq, JsonRequestBehavior.AllowGet);
-
-
-
-            return null;
+            Alerts.openSubmit = true;
+            return RedirectToAction("Index","Front");
 
         }
         
+        [HttpPost]
+        public ActionResult sendMessage(MessageViewModel collection)
+        {
+            DBEnt db = new DBEnt();
+            Message msg = new Message() {
+                Subject = collection.Subject,
+                Message1 = collection.Message,
+                Date = DateTime.Now,
+                Status = "unread",
+                UserID=User.Identity.GetUserId()
+            };
+            Alerts.messageSent = true;
+            db.Messages.Add(msg);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Front");
+        }
         
 
         // GET: Front/Details/5

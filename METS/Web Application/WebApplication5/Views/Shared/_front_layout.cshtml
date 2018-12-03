@@ -15,6 +15,10 @@
     <link rel="stylesheet" type="text/css" href="~/Content/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="~/Content/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="~/Content/styles/responsive.css">
+    <link href="~/Content/alertify.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/Alertify.js"></script>
+   
 
 
 </head>
@@ -122,11 +126,32 @@
         </div>
 
 
+        @if (Alerts.openSubmit)
+        {
+            <script>
+            alertify.success('Thank you for your contribution!');
+            </script>
 
+            Alerts.openSubmit = false;
+
+        }
+
+        @if (Alerts.messageSent)
+        {
+            <script>
+            alertify.success('Message Sent!');
+            </script>
+
+            Alerts.messageSent = false;
+
+        }
 
 
 
         @RenderBody()
+
+
+        
 
 
 
@@ -201,10 +226,8 @@
                         <div class="col">
                             <div class="copyright_content d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
                                 <div class="cr">
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                     Copyright &copy;
                                     <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Team Xploiterz</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 </div>
                                 <div class="cr_right ml-md-auto">
                                     <div class="footer_phone"><span class="cr_title">phone:</span>+44 300 303 0266</div>
@@ -337,20 +360,20 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form">
+                        <form class="form" method="post" action="~/Front/sendMessage">
                             <div class="form-gorup">
                                 <label for="subject">Subject</label>
-                                <input class="form-control" type="name" name="" placeholder="Subject">
+                                <input class="form-control" type="text" name="subject" placeholder="Subject" required>
 
                             </div>
                             <div class="form-gorup">
                                 <label for="message">Message</label>
-                                <textarea name="" id="" cols="30" class="form-control" rows="10"></textarea>
+                                <textarea name="message" id="" cols="30" class="form-control" rows="10" required></textarea>
 
 
                             </div>
                             <div class="float-right mt-4">
-                                <a href="" class="btn btn-info px-4">Send</a>
+                                <input type="submit" class="btn btn-info px-4" value="Send" />
 
                             </div>
                         </form>
@@ -402,6 +425,8 @@
 
 
 
+
+
     <script src="~/Content/js/jquery-3.2.1.min.js"></script>
     <script src="~/Content/styles/bootstrap4/popper.js"></script>
     <script src="~/Content/styles/bootstrap4/bootstrap.min.js"></script>
@@ -409,7 +434,12 @@
     <script src="~/Content/plugins/easing/easing.js"></script>
     <script src="~/Content/js/custom.js"></script>
     <script src="~/Content/js/graph.js"></script>
+    
+
+    
+
     <script type="text/javascript">
+    
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
@@ -554,6 +584,10 @@
         });
 
     </script>
+
+
+
+   
 
 
 

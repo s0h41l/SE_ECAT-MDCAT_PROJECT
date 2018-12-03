@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -152,6 +153,7 @@ namespace WebApplication5.Controllers
                
             };
             DBEnt db = new DBEnt();
+            db.Submissions.Add(new Submission() { UserID = User.Identity.GetUserId(), McqId = mcq.Id });
             db.Mcqs.Add(mcq);
             db.SaveChanges();
             Alerts.addMcq = true;
