@@ -152,7 +152,8 @@ namespace WebApplication5.Controllers
             DBEnt db = new DBEnt();
             db.Mcqs.Add(mcq);
             db.SaveChanges();
-            return Json(mcq,JsonRequestBehavior.AllowGet);
+            Alerts.addMcq = true;
+            return RedirectToAction("allMcq", "Admin");
         }
 
 
@@ -161,7 +162,6 @@ namespace WebApplication5.Controllers
             DBEnt db = new DBEnt();
             var exams = db.Exams.ToList<Exam>();
             ViewData["exams"] = exams;
-
             return View(new ExamViewModel());
         }
 
@@ -169,29 +169,47 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult addExam(ExamViewModel collection)
         {
-            DBEnt db = new DBEnt();
+            if (!examExist(collection.Name))
+            {
+                DBEnt db = new DBEnt();
 
-            string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
-            string ext = Path.GetExtension(collection.Image.FileName);
-            filename = filename + DateTime.Now.Millisecond.ToString();
-            filename = filename + ext;
-            string filetodb = "/Image/" + filename;
-            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+                string ext = Path.GetExtension(collection.Image.FileName);
+                filename = filename + DateTime.Now.Millisecond.ToString();
+                filename = filename + ext;
+                string filetodb = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
 
-            collection.Image.SaveAs(filename);
-            collection.Cover = filetodb;
+                collection.Image.SaveAs(filename);
+                collection.Cover = filetodb;
 
-            db.Exams.Add(new Exam() { Name = collection.Name,Cover=collection.Cover });
-            db.SaveChanges();
-            return Json(new Exam() { Name = collection.Name }, JsonRequestBehavior.AllowGet);
+                db.Exams.Add(new Exam() { Name = collection.Name, Cover = collection.Cover });
+                db.SaveChanges();
+                Alerts.addExam = true;
+                return RedirectToAction("addExam", "Admin");
+                
+            }
+            else
+            {
+                Alerts.alreadyExist = true;
+                return RedirectToAction("addExam","Admin");
+            }
         }
 
         public ActionResult deleteExam(int? id)
         {
             DBEnt db = new DBEnt();
+            var mcqs = db.Mcqs.Where(x => x.ExamId == id).ToList<Mcq>();
+            foreach(var i in mcqs)
+            {
+                db.Entry(i).State = System.Data.Entity.EntityState.Deleted;
+
+            }
+            db.SaveChanges();
             var exam = db.Exams.Where(x => x.Id == id).First();
             db.Entry(exam).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
+            Alerts.deleteExam = true;
             return RedirectToAction("AddExam", "Admin");
         }
 
@@ -209,21 +227,30 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult addSubject(SubjectViewModel collection)
         {
-            DBEnt db = new DBEnt();
+            if (!subjectExist(collection.Name))
+            {
+                DBEnt db = new DBEnt();
 
-            string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
-            string ext = Path.GetExtension(collection.Image.FileName);
-            filename = filename + DateTime.Now.Millisecond.ToString();
-            filename = filename + ext;
-            string filetodb = "/Image/" + filename;
-            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+                string ext = Path.GetExtension(collection.Image.FileName);
+                filename = filename + DateTime.Now.Millisecond.ToString();
+                filename = filename + ext;
+                string filetodb = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
 
-            collection.Image.SaveAs(filename);
-            collection.Cover = filetodb;
+                collection.Image.SaveAs(filename);
+                collection.Cover = filetodb;
 
-            db.Subjects.Add(new Subject() { Name = collection.Name });
-            db.SaveChanges();
-            return Json(new Subject() { Name = collection.Name }, JsonRequestBehavior.AllowGet);
+                db.Subjects.Add(new Subject() { Name = collection.Name });
+                db.SaveChanges();
+                Alerts.addSubject = true;
+                return RedirectToAction("addSubject","Admin");
+            }
+            else
+            {
+                Alerts.alreadyExist = true;
+                return RedirectToAction("addSubject", "Admin");
+            }
         }
 
 
@@ -250,7 +277,8 @@ namespace WebApplication5.Controllers
             };
             db.Chapters.Add(chapter);
             db.SaveChanges();
-            return Json(chapter, JsonRequestBehavior.AllowGet);
+            Alerts.addChapter = true;
+            return RedirectToAction("addChapter","Admin");
             
         }
 
@@ -322,6 +350,7 @@ namespace WebApplication5.Controllers
                 {
                     db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
                     db.SaveChanges();
+                    Alerts.deleteUser = true;
                     return RedirectToAction("allUsers", "Admin");
                 }
             }
@@ -329,10 +358,11 @@ namespace WebApplication5.Controllers
             {
                 db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
+                Alerts.deleteUser = true;
                 return RedirectToAction("allUsers", "Admin");
             }
 
-            return Content("WTH");
+            return Content("Error........");
             
         }
 
@@ -346,7 +376,8 @@ namespace WebApplication5.Controllers
             Mcq mcq = db.Mcqs.Where(x => x.Id == id).First();
             db.Entry(mcq).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
-            return Content(mcq.Question.ToString());
+            Alerts.deleteMcq = true;
+            return RedirectToAction("allMcq","Admin");
         }
 
 
@@ -362,6 +393,7 @@ namespace WebApplication5.Controllers
             Chapter chapter = db.Chapters.Where(x => x.Id == id).First();
             db.Entry(chapter).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
+            Alerts.deleteChapter = true;
             return RedirectToAction("addChapter", "Admin");
         }
 
@@ -386,6 +418,7 @@ namespace WebApplication5.Controllers
             }
             db.Entry(subject).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
+            Alerts.deleteSubject = true;
             return RedirectToAction("addSubject","Admin");
             
         }
@@ -420,6 +453,7 @@ namespace WebApplication5.Controllers
             var message = db.Messages.Where(x => x.Id == id).First();
             db.Entry(message).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
+            Alerts.deleteMessage = true;
             return RedirectToAction("viewMessagaes","Admin");
         }
 
@@ -508,19 +542,51 @@ namespace WebApplication5.Controllers
             return obj.Name;
         }
 
-       /* public string getRole(int? id)
+        /* public string getRole(int? id)
+         {=
+             try
+             {
+                 DBEnt db = new DBEnt();
+                 var user = db.UserRoles.Where(x => x.Id == id).First();
+                 return user.Name;
+             }
+             catch
+             {
+                 return "Invalid";
+             }
+
+         }*/
+
+        public bool examExist(string exam)
         {
-            try
+            DBEnt db = new DBEnt();
+            var num = db.Exams.Where(x => x.Name == exam).Count();
+            if (num > 0)
             {
-                DBEnt db = new DBEnt();
-                var user = db.UserRoles.Where(x => x.Id == id).First();
-                return user.Name;
+                return true;
             }
-            catch
+            else
             {
-                return "Invalid";
+                return false;
             }
 
-        }*/
+        }
+
+        public bool subjectExist(string subject)
+        {
+            DBEnt db = new DBEnt();
+            var num = db.Subjects.Where(x => x.Name == subject).Count();
+            if (num > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

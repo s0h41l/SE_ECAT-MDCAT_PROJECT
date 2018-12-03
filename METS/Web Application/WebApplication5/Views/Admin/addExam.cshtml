@@ -69,6 +69,7 @@
                     <thead>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Cover</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -78,7 +79,8 @@
                             <tr>
                                 <td>@i.Id</td>
                                 <td>@i.Name</td>
-                                <td><a href="~/Admin/deleteExam/@i.Id">Delete</a></td>
+                                <td><img src="@i.Cover" alt="" class="img-fluid" width="50" /></td>
+                                <td><a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteExam/@i.Id">Delete</a></td>
                             </tr>
                         }
 

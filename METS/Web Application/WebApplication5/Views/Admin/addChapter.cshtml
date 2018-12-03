@@ -7,6 +7,9 @@
 
 <div class="content-page">
 
+
+   
+
     <!-- Start content -->
     <div class="content">
 
@@ -91,7 +94,7 @@
                                 <td>@i.Id</td>
                                 <td>@i.ChapterNo</td>
                                 <td>@i.Name</td>
-                                <td><a class="nav-link" href="~/Admin/deleteChapter/@i.Id">Delete</a></td>
+                                <td><a onclick="return confirm('Are you sure you want to delete?')" class="nav-link" href="~/Admin/deleteChapter/@i.Id">Delete</a></td>
                             </tr>
 
 

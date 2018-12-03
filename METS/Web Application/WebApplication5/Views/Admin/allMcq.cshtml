@@ -12,6 +12,15 @@
 
 
 <div class="content-page">
+    
+
+
+
+
+    
+
+
+
 
     <!-- Start content -->
     <div class="content">
@@ -76,15 +85,15 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Downvotes)
                     </th>
-                   
-                    <th></th>
+
+                    <th>Ation</th>
                 </tr>
 
                 @foreach (var item in Model)
                 {
                     <tr>
-                        
-                        
+
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Question)
                         </td>
@@ -124,11 +133,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Downvotes)
                         </td>
-                       
+
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            <a href="~/Admin/deleteMcq/@item.Id">Delete</a>
+                            <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteMcq/@item.Id">Delete</a>
                         </td>
                     </tr>
                 }

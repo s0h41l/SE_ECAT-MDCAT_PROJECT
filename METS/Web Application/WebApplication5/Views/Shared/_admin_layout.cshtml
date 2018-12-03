@@ -22,12 +22,132 @@
 
     <!-- Custom CSS -->
     <link href="/Content/admin/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/alertify.css" rel="stylesheet" type="text/css" />
 
 
 
 </head>
 
 <body class="adminbody">
+
+
+    <!--Alerts Section-->
+
+    @if (Alerts.addChapter)
+    {
+        <script>
+        alertify.success('Chapter Added');
+        </script>
+
+        Alerts.addChapter = false;
+
+    }
+
+    @if (Alerts.deleteChapter)
+    {
+        <script>
+        alertify.success('Chapter Deleted');
+        </script>
+
+        Alerts.deleteChapter = false;
+
+    }
+
+
+    @if (Alerts.addExam)
+    {
+        <script>
+        alertify.success('Exam Added');
+        </script>
+        Alerts.addExam = false;
+
+    }
+
+    @if (Alerts.deleteExam)
+    {
+        <script>
+        alertify.success('Exam Deleted');
+        </script>
+
+        Alerts.deleteExam = false;
+
+    }
+
+    @if (Alerts.addMcq)
+    {
+        <script>
+        alertify.success('MCQ Added');
+        </script>
+
+        Alerts.addMcq = false;
+
+    }
+
+    @if (Alerts.deleteMcq)
+    {
+        <script>
+        alertify.success('MCQ Deleted');
+        </script>
+
+        Alerts.deleteMcq = false;
+
+    }
+
+
+    @if (Alerts.addChapter)
+    {
+        <script>
+        alertify.success('Chapter Added');
+        </script>
+
+        Alerts.addChapter = false;
+
+    }
+
+
+    @if (Alerts.addSubject)
+    {
+        <script>
+        alertify.success('Subject Added');
+        </script>
+
+        Alerts.addSubject=false;
+
+    }
+
+    @if (Alerts.deleteSubject)
+    {
+        <script>
+        alertify.success('Subject Deleted');
+        </script>
+
+        Alerts.deleteSubject = false;
+
+    }
+
+
+    @if (Alerts.alreadyExist)
+    {
+        <script>
+        alertify.error('Subject Deleted');
+        </script>
+   
+        Alerts.alreadyExist = false;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="main">
 
@@ -180,7 +300,7 @@
                         <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="~/Content/admin/assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
                         </a>
-                        
+
                         @Html.Partial("_adminLoginPartialView")
                     </li>
 
@@ -289,19 +409,27 @@
     <!-- App js -->
     <script src="/Content/admin/assets/js/pikeadmin.js"></script>
 
-    
+
     <script src="/Content/admin/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="/Content/admin/assets/plugins/counterup/jquery.counterup.min.js"></script>
+    <script src="~/Content/alertify.min.js"></script>
 
 
-   
-    
+
+
 
 
 
 
 
     <script>
+
+
+
+
+
+
+
         $(document).ready(function () {
             $.ajax({
                 type: "GET",
@@ -315,8 +443,8 @@
                     });
                     $("#exam").html(html);
                 }
-                
-                
+
+
             });
 
             $(document).ready(function () {
@@ -340,7 +468,7 @@
 
 
             $("#subject").on('click', function () {
-                var link = "http://localhost:1771/Admin/chapters/"+this.value;
+                var link = "http://localhost:1771/Admin/chapters/" + this.value;
                 $.ajax({
                     type: "GET",
                     url: link,
@@ -350,22 +478,39 @@
                         $.each(data, function (key, value) {
                             html += '<option value="%val%">%name%</option>';
                             html = html.replace("%val%", value.Id);
-                            html = html.replace("%name%", "CH " + value.ChapterNo +" "+ value.Name);
+                            html = html.replace("%name%", "CH " + value.ChapterNo + " " + value.Name);
                         });
                         $('#chapter').html(html);
                     }
                 });
-                
+
 
 
             });
 
-            
+
         });
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </script>
 
 
 </body>
+
+
 
 </html>

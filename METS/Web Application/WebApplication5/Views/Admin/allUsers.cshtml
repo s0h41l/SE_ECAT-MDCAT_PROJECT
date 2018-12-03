@@ -38,7 +38,7 @@
 
 
 
-            <table class="table">
+            <table class="table" id="userTable">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
@@ -68,12 +68,16 @@
                        
                         <td>
                             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            <a href="~/Admin/deleteUser/@item.Id">Delete</a>
+                            <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteUser/@item.Id">Delete</a>
                         </td>
                     </tr>
                 }
 
             </table>
+
+
+
+            
 
 
 

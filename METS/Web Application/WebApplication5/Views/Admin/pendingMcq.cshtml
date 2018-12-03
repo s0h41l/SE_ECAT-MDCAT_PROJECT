@@ -138,7 +138,7 @@
 
                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            <a href="~/Admin/deleteMcq/@item.Id">Delete</a>
+                            <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteMcq/@item.Id">Delete</a>
                         </td>
                     </tr>
                 }

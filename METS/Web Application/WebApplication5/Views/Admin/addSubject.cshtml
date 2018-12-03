@@ -66,7 +66,7 @@
                             <tr>
                                 <td>@i.Id</td>
                                 <td>@i.Name</td>
-                                <td><a href="~/Admin/deleteSubject/@i.Id">Delete</a></td>
+                                <td><a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteSubject/@i.Id">Delete</a></td>
                             </tr>
 
                         }
