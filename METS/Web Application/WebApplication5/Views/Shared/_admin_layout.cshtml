@@ -33,19 +33,6 @@
 <body class="adminbody">
 
 
-    <!--Alerts Section-->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -535,6 +522,61 @@
         Alerts.alreadyExist = false;
 
     }
+
+    @if (Alerts.mcqupdated)
+    {
+        <script>
+            alertify.success('MCQ Updated!');
+        </script>
+
+        Alerts.mcqupdated = false;
+
+    }
+
+    @if (Alerts.disapprove)
+    {
+        <script>
+            alertify.warning('MCQ Disapproved!');
+        </script>
+
+        Alerts.disapprove = false;
+
+    }
+
+    @if (Alerts.examupdated)
+    {
+        <script>
+            alertify.success('Exam Updated!');
+        </script>
+
+        Alerts.examupdated= false;
+
+    }
+
+    @if (Alerts.subjectupdated)
+    {
+        <script>
+            alertify.success('Subject Updated!');
+        </script>
+
+        Alerts.subjectupdated = false;
+
+    }
+
+
+    @if (Alerts.chapterupdated)
+    {
+        <script>
+            alertify.success('Chapter Updated!');
+        </script>
+
+        Alerts.chapterupdated = false;
+
+    }
+
+
+
+
 
 
 

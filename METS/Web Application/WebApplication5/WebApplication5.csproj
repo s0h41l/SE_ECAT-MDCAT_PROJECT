@@ -365,6 +365,9 @@
     <Content Include="Views\Admin\allUsers.cshtml" />
     <Content Include="Views\Shared\_adminLoginPartialView.cshtml" />
     <Content Include="Views\Admin\changePassword.cshtml" />
+    <Content Include="Views\Admin\editMcq.cshtml" />
+    <Content Include="Views\Admin\editExam.cshtml" />
+    <Content Include="Views\Admin\editSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

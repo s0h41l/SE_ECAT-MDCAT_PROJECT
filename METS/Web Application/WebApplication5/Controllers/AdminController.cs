@@ -82,7 +82,9 @@ namespace WebApplication5.Controllers
                 sub.Add(obj);
             }
 
-            return Json(sub,JsonRequestBehavior.AllowGet);
+            List<Subject> sorted = sub.OrderBy(x => x.Name).ToList();
+
+            return Json(sorted, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -100,7 +102,8 @@ namespace WebApplication5.Controllers
                 };
                 exm.Add(obj);
             }
-            return Json(exm,JsonRequestBehavior.AllowGet);
+            exm = exm.OrderBy(x => x.Name).ToList();
+            return Json(exm, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -120,8 +123,8 @@ namespace WebApplication5.Controllers
                 };
                 chaps.Add(obj);
             }
-
-            return Json(chaps,JsonRequestBehavior.AllowGet);
+            chaps = chaps.OrderBy(x => x.Name).ToList();
+            return Json(chaps, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -161,6 +164,38 @@ namespace WebApplication5.Controllers
         }
 
 
+
+
+
+        public ActionResult editMcq(long id)
+        {
+            DBEnt db = new DBEnt();
+            var mcq = db.Mcqs.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["mcq"] = mcq;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult editMcq(long id,McqViewModel collection)
+        {
+            DBEnt db = new DBEnt();
+            var mcq = db.Mcqs.Where(x => x.Id == id).FirstOrDefault();
+            mcq.Question = collection.Question;
+            mcq.OptionA = collection.OptionA;
+            mcq.OptionB = collection.OptionB;
+            mcq.OptionC = collection.OptionC;
+            mcq.OptionD = collection.OptionD;
+            mcq.CorrectOption = collection.CorrectOption;
+            db.SaveChanges();
+            Alerts.mcqupdated = true;
+            return RedirectToAction("allMcq", "Admin");
+        }
+
+
+
+
+
+
         public ActionResult addExam()
         {
             DBEnt db = new DBEnt();
@@ -168,6 +203,86 @@ namespace WebApplication5.Controllers
             ViewData["exams"] = exams;
             return View(new ExamViewModel());
         }
+
+
+        public ActionResult editExam(long? id)
+        {
+            DBEnt db = new DBEnt();
+            var exam = db.Exams.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["exam"] = exam;
+            return View();
+        }
+
+
+        [HttpPost]
+
+        public ActionResult editExam(long? id,ExamViewModel collection)
+        {
+            DBEnt db = new DBEnt();
+            var exam = db.Exams.Where(x => x.Id == id).FirstOrDefault();
+            if (collection.Image!=null)
+            {
+                if (!examExist(collection.Name))
+                {
+
+                    string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+                    string ext = Path.GetExtension(collection.Image.FileName);
+                    filename = filename + DateTime.Now.Millisecond.ToString();
+                    filename = filename + ext;
+                    string filetodb = "/Image/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                    collection.Image.SaveAs(filename);
+                    collection.Cover = filetodb;
+                    exam.Name = collection.Name;
+                    exam.Cover = collection.Cover;
+                    db.SaveChanges();
+                    Alerts.examupdated = true;
+                    return RedirectToAction("addExam", "Admin");
+
+                }
+                else
+                {
+                    if (collection.Image != null)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+                        string ext = Path.GetExtension(collection.Image.FileName);
+                        filename = filename + DateTime.Now.Millisecond.ToString();
+                        filename = filename + ext;
+                        string filetodb = "/Image/" + filename;
+                        filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                        collection.Image.SaveAs(filename);
+                        collection.Cover = filetodb;
+                        exam.Cover = collection.Cover;
+                        db.SaveChanges();
+                        Alerts.examupdated = true;
+                        return RedirectToAction("addExam", "Admin");
+
+                    }
+                    Alerts.alreadyExist = true;
+                    return RedirectToAction("addExam", "Admin");
+                }
+
+            }
+            else
+            {
+                if (!examExist(collection.Name))
+                {
+
+                    exam.Name = collection.Name;
+                    db.SaveChanges();
+                    Alerts.examupdated = true;
+                    return RedirectToAction("addExam", "Admin");
+
+                }
+                else
+                {
+                    Alerts.alreadyExist = true;
+                    return RedirectToAction("addExam", "Admin");
+                }
+            }
+            return View();
+        }
+
 
 
         [HttpPost]
@@ -228,6 +343,89 @@ namespace WebApplication5.Controllers
         }
 
 
+
+
+        public ActionResult editSubject(long? id)
+        {
+            DBEnt db = new DBEnt();
+            var subject = db.Subjects.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["subject"] = subject;
+            return View();
+        }
+
+
+
+
+
+
+        [HttpPost]
+        public ActionResult editSubject(long? id, SubjectViewModel collection)
+        {
+            DBEnt db = new DBEnt();
+            var subject = db.Subjects.Where(x => x.Id == id).FirstOrDefault();
+            if (collection.Image != null)
+            {
+                if (!subjectExist(collection.Name))
+                {
+                    string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+                    string ext = Path.GetExtension(collection.Image.FileName);
+                    filename = filename + DateTime.Now.Millisecond.ToString();
+                    filename = filename + ext;
+                    string filetodb = "/Image/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                    collection.Image.SaveAs(filename);
+                    collection.Cover = filetodb;
+                    subject.Name = collection.Name;
+                    subject.Cover = collection.Cover;
+                    db.SaveChanges();
+                    Alerts.subjectupdated = true;
+                    return RedirectToAction("addSubject", "Admin");
+
+                }
+                else
+                {
+                    if (collection.Image != null)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(collection.Image.FileName);
+                        string ext = Path.GetExtension(collection.Image.FileName);
+                        filename = filename + DateTime.Now.Millisecond.ToString();
+                        filename = filename + ext;
+                        string filetodb = "/Image/" + filename;
+                        filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                        collection.Image.SaveAs(filename);
+                        collection.Cover = filetodb;
+                        subject.Cover = collection.Cover;
+                        db.SaveChanges();
+                        Alerts.subjectupdated = true;
+                        return RedirectToAction("addSubject", "Admin");
+
+                    }
+                    Alerts.alreadyExist = true;
+                    return RedirectToAction("addSubject", "Admin");
+                }
+
+            }
+            else
+            {
+                if (!subjectExist(collection.Name))
+                {
+
+                    subject.Name = collection.Name;
+                    db.SaveChanges();
+                    Alerts.subjectupdated = true;
+                    return RedirectToAction("addSubject", "Admin");
+
+                }
+                else
+                {
+                    Alerts.alreadyExist = true;
+                    return RedirectToAction("addSubject", "Admin");
+                }
+            }
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult addSubject(SubjectViewModel collection)
         {
@@ -245,7 +443,7 @@ namespace WebApplication5.Controllers
                 collection.Image.SaveAs(filename);
                 collection.Cover = filetodb;
 
-                db.Subjects.Add(new Subject() { Name = collection.Name });
+                db.Subjects.Add(new Subject() { Name = collection.Name,Cover=collection.Cover });
                 db.SaveChanges();
                 Alerts.addSubject = true;
                 return RedirectToAction("addSubject","Admin");
@@ -293,7 +491,7 @@ namespace WebApplication5.Controllers
 
         public ActionResult allMcq()
         {
-            List<Mcq> mcqs = (new DBEnt()).Mcqs.ToList<Mcq>();
+            List<Mcq> mcqs = (new DBEnt()).Mcqs.Where(x=>x.Status=="approve").ToList<Mcq>();
             List<McqViewModel> mcqview = new List<McqViewModel>();
             foreach (Mcq i in mcqs)
             {
@@ -313,9 +511,7 @@ namespace WebApplication5.Controllers
                     Downvotes = Convert.ToInt32(i.DownVotes),
                     Status = i.Status,
                     Subject = mcqSubject(i.Id),
-                    Chapter = mcqChapter(i.Id)
-                   
-                   
+                    Chapter = mcqChapter(i.Id) 
                    
                 };
                 mcqview.Add(obj);
@@ -384,6 +580,14 @@ namespace WebApplication5.Controllers
         public ActionResult deleteMcq(int id)
         {
             DBEnt db = new DBEnt();
+
+            List<Submission> submissions = db.Submissions.Where(x => x.McqId == id).ToList<Submission>();
+            foreach(Submission i in submissions)
+            {
+                db.Entry(i).State = System.Data.Entity.EntityState.Deleted;
+            }
+            db.SaveChanges();
+
             Mcq mcq = db.Mcqs.Where(x => x.Id == id).First();
             db.Entry(mcq).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
@@ -476,6 +680,17 @@ namespace WebApplication5.Controllers
             db.SaveChanges();
             Alerts.approve = true;
             return RedirectToAction("pendingMcq", "Admin");
+
+        }
+
+            public ActionResult disapproveMcq(int? id)
+        {
+            DBEnt db = new DBEnt();
+            var mcq = db.Mcqs.Where(x => x.Id == id).First();
+            mcq.Status = "pending";
+            db.SaveChanges();
+            Alerts.disapprove = true;
+            return RedirectToAction("allMcq", "Admin");
 
         }
 
@@ -627,6 +842,12 @@ namespace WebApplication5.Controllers
             return chap.ChapterNo.ToString();
 
         }
+
+
+
+
+
+       
 
 
 

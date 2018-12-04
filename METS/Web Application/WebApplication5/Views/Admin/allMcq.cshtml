@@ -87,7 +87,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Downvotes)
                     </th>
-                    <th>Ation</th>
+                    <th colspan="3">Ation</th>
                     </thead>
       
 
@@ -136,6 +136,8 @@
                                     @Html.DisplayFor(modelItem => item.Downvotes)
                                 </td>
 
+                                <td><a href="~/Admin/editMcq/@item.Id">Edit</a></td>
+                                <td><a onclick="return confirm('Are you sure you want to disapprove this mcq?')" href="~/Admin/disapproveMcq/@item.Id">Disapprove<a></td>
                                 <td>
                                     <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteMcq/@item.Id">Delete</a>
                                 </td>

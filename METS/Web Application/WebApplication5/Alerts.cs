@@ -20,6 +20,11 @@ namespace WebApplication5
         public static bool approve = false;
         public static bool openSubmit = false;
         public static bool messageSent = false;
+        public static bool mcqupdated = false;
+        public static bool disapprove = false;
+        public static bool examupdated = false;
+        public static bool subjectupdated = false;
+        public static bool chapterupdated = false;
 
 
         public static bool alreadyExist = false;
