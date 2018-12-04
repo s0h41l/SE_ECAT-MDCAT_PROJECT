@@ -18,6 +18,9 @@ namespace WebApplication5.Controllers
             DBEnt db= new DBEnt();
             List<Exam> exams = db.Exams.ToList();
             List<Subject> subjects = db.Subjects.ToList();
+            ViewData["subjects"] = subjects;
+            ViewData["exams"] = exams;
+
             return View();
         }
 
