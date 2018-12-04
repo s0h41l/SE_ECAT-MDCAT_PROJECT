@@ -69,6 +69,9 @@
     <EntitySetMapping Name="Exams">
       <EntityTypeMapping TypeName="DBEntities.Exam">
         <MappingFragment StoreEntitySet="Exams">
+          <ScalarProperty Name="NegativeMark" ColumnName="NegativeMark" />
+          <ScalarProperty Name="MarkPerMcq" ColumnName="MarkPerMcq" />
+          <ScalarProperty Name="TotalQuestions" ColumnName="TotalQuestions" />
           <ScalarProperty Name="Cover" ColumnName="Cover" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />

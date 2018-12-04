@@ -45,7 +45,7 @@
 
                     <div class="form-group">
                         <label>Questions * </label>
-                        <div class="col-md-10">
+                        <div>
                             @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control", required = "required" , @Value = mcq.Question } })
                             @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
                         </div>

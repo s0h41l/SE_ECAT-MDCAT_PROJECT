@@ -82,6 +82,9 @@
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="100" />
           <Property Name="Cover" Type="nvarchar(max)" />
+          <Property Name="TotalQuestions" Type="bigint" />
+          <Property Name="MarkPerMcq" Type="bigint" />
+          <Property Name="NegativeMark" Type="int" />
         </EntityType>
         <EntityType Name="Mcqs">
           <Key>
@@ -422,6 +425,9 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Mcqs" Relationship="Self.FK_Mcqs_Exams" FromRole="Exams" ToRole="Mcqs" />
           <Property Name="Cover" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalQuestions" Type="Int64" />
+          <Property Name="MarkPerMcq" Type="Int64" />
+          <Property Name="NegativeMark" Type="Int32" />
         </EntityType>
         <EntityType Name="Mcq">
           <Key>
@@ -732,6 +738,9 @@
           <EntitySetMapping Name="Exams">
             <EntityTypeMapping TypeName="DBEntities.Exam">
               <MappingFragment StoreEntitySet="Exams">
+                <ScalarProperty Name="NegativeMark" ColumnName="NegativeMark" />
+                <ScalarProperty Name="MarkPerMcq" ColumnName="MarkPerMcq" />
+                <ScalarProperty Name="TotalQuestions" ColumnName="TotalQuestions" />
                 <ScalarProperty Name="Cover" ColumnName="Cover" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

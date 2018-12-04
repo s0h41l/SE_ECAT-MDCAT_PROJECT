@@ -235,6 +235,9 @@ namespace WebApplication5.Controllers
                     collection.Cover = filetodb;
                     exam.Name = collection.Name;
                     exam.Cover = collection.Cover;
+                    exam.TotalQuestions = collection.TotalQuestions;
+                    exam.MarkPerMcq = collection.MarkPerMcq;
+                    exam.NegativeMark = collection.NegativeMark;
                     db.SaveChanges();
                     Alerts.examupdated = true;
                     return RedirectToAction("addExam", "Admin");
@@ -253,6 +256,9 @@ namespace WebApplication5.Controllers
                         collection.Image.SaveAs(filename);
                         collection.Cover = filetodb;
                         exam.Cover = collection.Cover;
+                        exam.TotalQuestions = collection.TotalQuestions;
+                        exam.MarkPerMcq = collection.MarkPerMcq;
+                        exam.NegativeMark = collection.NegativeMark;
                         db.SaveChanges();
                         Alerts.examupdated = true;
                         return RedirectToAction("addExam", "Admin");
@@ -269,6 +275,9 @@ namespace WebApplication5.Controllers
                 {
 
                     exam.Name = collection.Name;
+                    exam.TotalQuestions = collection.TotalQuestions;
+                    exam.MarkPerMcq = collection.MarkPerMcq;
+                    exam.NegativeMark = collection.NegativeMark;
                     db.SaveChanges();
                     Alerts.examupdated = true;
                     return RedirectToAction("addExam", "Admin");
@@ -302,7 +311,7 @@ namespace WebApplication5.Controllers
                 collection.Image.SaveAs(filename);
                 collection.Cover = filetodb;
 
-                db.Exams.Add(new Exam() { Name = collection.Name, Cover = collection.Cover });
+                db.Exams.Add(new Exam() { Name = collection.Name, Cover = collection.Cover,TotalQuestions=collection.TotalQuestions,MarkPerMcq=collection.MarkPerMcq,NegativeMark=collection.NegativeMark });
                 db.SaveChanges();
                 Alerts.addExam = true;
                 return RedirectToAction("addExam", "Admin");
@@ -322,6 +331,8 @@ namespace WebApplication5.Controllers
             foreach(var i in mcqs)
             {
                 db.Entry(i).State = System.Data.Entity.EntityState.Deleted;
+                var sub = db.Submissions.Where(x => x.McqId == i.Id).FirstOrDefault();
+                db.Entry(sub).State = System.Data.Entity.EntityState.Deleted;
 
             }
             db.SaveChanges();
