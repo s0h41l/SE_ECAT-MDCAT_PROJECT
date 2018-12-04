@@ -488,6 +488,33 @@ namespace WebApplication5.Controllers
         }
 
 
+        public ActionResult editChapter(long? id)
+        {
+            DBEnt db = new DBEnt();
+            var chapter = db.Chapters.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["chapter"] = chapter;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult editChapter(long? id,ChapterViewModel collection)
+        {
+
+            DBEnt db = new DBEnt();
+            var chap = db.Chapters.Where(x => x.Id == id).FirstOrDefault();
+            chap.Name = collection.Name;
+            chap.ChapterNo = collection.ChapterNo;
+            db.SaveChanges();
+            Alerts.chapterupdated = true;
+            return RedirectToAction("addChapter", "Admin");
+
+        }
+
+
+
+
+
+
 
         public ActionResult allMcq()
         {

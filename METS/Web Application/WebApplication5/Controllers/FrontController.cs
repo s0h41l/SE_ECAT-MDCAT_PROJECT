@@ -15,7 +15,9 @@ namespace WebApplication5.Controllers
         // GET: Front
         public ActionResult Index()
         {
-
+            DBEnt db= new DBEnt();
+            List<Exam> exams = db.Exams.ToList();
+            List<Subject> subjects = db.Subjects.ToList();
             return View();
         }
 
