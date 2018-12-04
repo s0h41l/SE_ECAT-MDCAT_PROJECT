@@ -74,7 +74,48 @@ namespace WebApplication5.Controllers
 
             return RedirectToAction("Index", "Front");
         }
-        
+
+        public ActionResult takeProperExam(long? id)
+        {
+            DBEnt db = new DBEnt();
+            var exam = db.Exams.Where(x => x.Id == id).FirstOrDefault();
+            return Json(exam, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult takeSubjectExam(long? id)
+        {
+            DBEnt db = new DBEnt();
+            var subject = db.Subjects.Where(x => x.Id == id).FirstOrDefault();
+            return Json(subject, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Front/Details/5
         public ActionResult Details(int id)
