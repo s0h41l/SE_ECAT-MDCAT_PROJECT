@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\FrontController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -369,6 +370,8 @@
     <Content Include="Views\Admin\editExam.cshtml" />
     <Content Include="Views\Admin\editSubject.cshtml" />
     <Content Include="Views\Admin\editChapter.cshtml" />
+    <Content Include="Views\Exam\fullExam.cshtml" />
+    <Content Include="Views\Exam\startExam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

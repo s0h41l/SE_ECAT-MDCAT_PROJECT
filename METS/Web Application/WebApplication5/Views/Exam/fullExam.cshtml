@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "fullExam";
+    Layout = "~/Views/Shared/_front_layout.cshtml";
+}
+
+
+@{ 
+    Exam exam = ViewData["fullexam"] as Exam;
+}
+
+
+
+
+<div class="container mt-5 pt-5 py-5" style="min-height:800px">
+
+    If you are a potential candidate for engineering college admission test, then must read these instructions before filling the entrance test form. It doesn’t matter whether you are going to take the exam of PIEAS, NUST, FAST, UET, ETEA or other, below mentioned guidelines will help you to fill form timely and accurately.
+
+    <div class="card-body bd-secondary">
+
+        <div class="container">
+            <p>You have to complete @exam.TotalQuestions MCQS in @exam.TimeInMinutes Minutes.</p>
+            <p>You have to keep following points in mind.</p>
+            <ol class="list-unstyled">
+                <li>@exam.MarkPerMcq mark for each correct MCQ</li>
+                <li>@exam.NegativeMark mark minus for every wrong mcq</li>
+            </ol>
+
+            <li class="text-success">Best Of luck <i class="fa fa-smile-o"></i></li>
+
+        </div>
+    </div>
+
+    <div class="container w-25">
+        <div class="float-right">
+            <a href="~/Exam/startExam/@exam.Id" class="btn btn-info">Start Exam</a>
+        </div>
+    </div>
+
+</div>

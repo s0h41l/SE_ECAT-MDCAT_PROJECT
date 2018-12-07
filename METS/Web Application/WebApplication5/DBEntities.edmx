@@ -71,7 +71,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="SubjectId" Type="bigint" />
           <Property Name="ChapterNo" Type="bigint" />
         </EntityType>
@@ -80,11 +80,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Cover" Type="nvarchar(max)" />
           <Property Name="TotalQuestions" Type="bigint" />
           <Property Name="MarkPerMcq" Type="bigint" />
           <Property Name="NegativeMark" Type="int" />
+          <Property Name="TimeInMinutes" Type="int" />
         </EntityType>
         <EntityType Name="Mcqs">
           <Key>
@@ -94,15 +95,15 @@
           <Property Name="SubjectId" Type="bigint" />
           <Property Name="ChapterId" Type="bigint" />
           <Property Name="ExamId" Type="bigint" />
-          <Property Name="Question" Type="nchar" MaxLength="3000" />
-          <Property Name="OptionA" Type="nchar" MaxLength="100" />
-          <Property Name="OptionB" Type="nchar" MaxLength="100" />
-          <Property Name="OptionC" Type="nchar" MaxLength="100" />
-          <Property Name="OptionD" Type="nchar" MaxLength="100" />
-          <Property Name="CorrectOption" Type="nchar" MaxLength="100" />
+          <Property Name="Question" Type="nvarchar(max)" />
+          <Property Name="OptionA" Type="nvarchar(max)" />
+          <Property Name="OptionB" Type="nvarchar(max)" />
+          <Property Name="OptionC" Type="nvarchar(max)" />
+          <Property Name="OptionD" Type="nvarchar(max)" />
+          <Property Name="CorrectOption" Type="nvarchar(max)" />
           <Property Name="UpVotes" Type="bigint" />
           <Property Name="DownVotes" Type="bigint" />
-          <Property Name="Status" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="EntryDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Messages">
@@ -111,17 +112,17 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="nvarchar" MaxLength="128" />
-          <Property Name="Subject" Type="nchar" MaxLength="600" />
-          <Property Name="Message" Type="nchar" MaxLength="3000" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
-          <Property Name="Status" Type="nchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Cover" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Submissions">
@@ -411,7 +412,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubjectId" Type="Int64" />
           <Property Name="ChapterNo" Type="Int64" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Chapters_Subjects" FromRole="Chapters" ToRole="Subjects" />
@@ -422,12 +423,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Mcqs" Relationship="Self.FK_Mcqs_Exams" FromRole="Exams" ToRole="Mcqs" />
           <Property Name="Cover" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TotalQuestions" Type="Int64" />
           <Property Name="MarkPerMcq" Type="Int64" />
           <Property Name="NegativeMark" Type="Int32" />
+          <Property Name="TimeInMinutes" Type="Int32" />
         </EntityType>
         <EntityType Name="Mcq">
           <Key>
@@ -437,15 +439,15 @@
           <Property Name="SubjectId" Type="Int64" />
           <Property Name="ChapterId" Type="Int64" />
           <Property Name="ExamId" Type="Int64" />
-          <Property Name="Question" Type="String" MaxLength="3000" FixedLength="true" Unicode="true" />
-          <Property Name="OptionA" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="OptionB" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="OptionC" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="OptionD" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="CorrectOption" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OptionD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CorrectOption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpVotes" Type="Int64" />
           <Property Name="DownVotes" Type="Int64" />
-          <Property Name="Status" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EntryDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Chapter" Relationship="Self.FK_Mcqs_Chapters" FromRole="Mcqs" ToRole="Chapters" />
           <NavigationProperty Name="Exam" Relationship="Self.FK_Mcqs_Exams" FromRole="Mcqs" ToRole="Exams" />
@@ -458,10 +460,10 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="600" FixedLength="true" Unicode="true" />
-          <Property Name="Message1" Type="String" MaxLength="3000" FixedLength="true" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Messages_AspNetUsers" FromRole="Messages" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="Subject">
@@ -469,7 +471,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Chapters" Relationship="Self.FK_Chapters_Subjects" FromRole="Subjects" ToRole="Chapters" />
           <NavigationProperty Name="Mcqs" Relationship="Self.FK_Mcqs_Subjects" FromRole="Subjects" ToRole="Mcqs" />
           <Property Name="Cover" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -738,6 +740,7 @@
           <EntitySetMapping Name="Exams">
             <EntityTypeMapping TypeName="DBEntities.Exam">
               <MappingFragment StoreEntitySet="Exams">
+                <ScalarProperty Name="TimeInMinutes" ColumnName="TimeInMinutes" />
                 <ScalarProperty Name="NegativeMark" ColumnName="NegativeMark" />
                 <ScalarProperty Name="MarkPerMcq" ColumnName="MarkPerMcq" />
                 <ScalarProperty Name="TotalQuestions" ColumnName="TotalQuestions" />

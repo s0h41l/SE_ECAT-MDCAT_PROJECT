@@ -66,7 +66,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="SubjectId" Type="bigint" />
     <Property Name="ChapterNo" Type="bigint" />
   </EntityType>
@@ -75,11 +75,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="Cover" Type="nvarchar(max)" />
     <Property Name="TotalQuestions" Type="bigint" />
     <Property Name="MarkPerMcq" Type="bigint" />
     <Property Name="NegativeMark" Type="int" />
+    <Property Name="TimeInMinutes" Type="int" />
   </EntityType>
   <EntityType Name="Mcqs">
     <Key>
@@ -89,15 +90,15 @@
     <Property Name="SubjectId" Type="bigint" />
     <Property Name="ChapterId" Type="bigint" />
     <Property Name="ExamId" Type="bigint" />
-    <Property Name="Question" Type="nchar" MaxLength="3000" />
-    <Property Name="OptionA" Type="nchar" MaxLength="100" />
-    <Property Name="OptionB" Type="nchar" MaxLength="100" />
-    <Property Name="OptionC" Type="nchar" MaxLength="100" />
-    <Property Name="OptionD" Type="nchar" MaxLength="100" />
-    <Property Name="CorrectOption" Type="nchar" MaxLength="100" />
+    <Property Name="Question" Type="nvarchar(max)" />
+    <Property Name="OptionA" Type="nvarchar(max)" />
+    <Property Name="OptionB" Type="nvarchar(max)" />
+    <Property Name="OptionC" Type="nvarchar(max)" />
+    <Property Name="OptionD" Type="nvarchar(max)" />
+    <Property Name="CorrectOption" Type="nvarchar(max)" />
     <Property Name="UpVotes" Type="bigint" />
     <Property Name="DownVotes" Type="bigint" />
-    <Property Name="Status" Type="nchar" MaxLength="100" />
+    <Property Name="Status" Type="nvarchar(max)" />
     <Property Name="EntryDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Messages">
@@ -106,17 +107,17 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="nvarchar" MaxLength="128" />
-    <Property Name="Subject" Type="nchar" MaxLength="600" />
-    <Property Name="Message" Type="nchar" MaxLength="3000" />
+    <Property Name="Subject" Type="nvarchar(max)" />
+    <Property Name="Message" Type="nvarchar(max)" />
     <Property Name="Date" Type="datetime" />
-    <Property Name="Status" Type="nchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="Cover" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Submissions">

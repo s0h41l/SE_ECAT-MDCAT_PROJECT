@@ -138,17 +138,18 @@ namespace WebApplication5.Controllers
        [HttpPost]
         public ActionResult AddMcq(McqViewModel collection)
         {
+            //return Json(collection, JsonRequestBehavior.AllowGet);
             Mcq mcq = new Mcq()
             {
                 ExamId = collection.ExamId,
                 SubjectId = collection.SubjectId,
                 ChapterId = collection.ChapterId,
-                Question = collection.Question,
-                OptionA = collection.OptionA,
-                OptionB = collection.OptionB,
-                OptionC = collection.OptionC,
-                OptionD = collection.OptionD,
-                CorrectOption = collection.CorrectOption,
+                Question = collection.Question.ToString(),
+                OptionA = collection.OptionA.ToString(),
+                OptionB = collection.OptionB.ToString(),
+                OptionC = collection.OptionC.ToString(),
+                OptionD = collection.OptionD.ToString(),
+                CorrectOption = collection.CorrectOption.ToString(),
                 UpVotes = 5,
                 DownVotes = 0,
                 Status = "approve",
@@ -238,6 +239,7 @@ namespace WebApplication5.Controllers
                     exam.TotalQuestions = collection.TotalQuestions;
                     exam.MarkPerMcq = collection.MarkPerMcq;
                     exam.NegativeMark = collection.NegativeMark;
+                    exam.TimeInMinutes = collection.TimeInMinutes;
                     db.SaveChanges();
                     Alerts.examupdated = true;
                     return RedirectToAction("addExam", "Admin");
@@ -259,6 +261,7 @@ namespace WebApplication5.Controllers
                         exam.TotalQuestions = collection.TotalQuestions;
                         exam.MarkPerMcq = collection.MarkPerMcq;
                         exam.NegativeMark = collection.NegativeMark;
+                        exam.TimeInMinutes = collection.TimeInMinutes;
                         db.SaveChanges();
                         Alerts.examupdated = true;
                         return RedirectToAction("addExam", "Admin");
@@ -278,6 +281,7 @@ namespace WebApplication5.Controllers
                     exam.TotalQuestions = collection.TotalQuestions;
                     exam.MarkPerMcq = collection.MarkPerMcq;
                     exam.NegativeMark = collection.NegativeMark;
+                    exam.TimeInMinutes = collection.TimeInMinutes;
                     db.SaveChanges();
                     Alerts.examupdated = true;
                     return RedirectToAction("addExam", "Admin");
@@ -285,6 +289,11 @@ namespace WebApplication5.Controllers
                 }
                 else
                 {
+                    exam.TotalQuestions = collection.TotalQuestions;
+                    exam.MarkPerMcq = collection.MarkPerMcq;
+                    exam.NegativeMark = collection.NegativeMark;
+                    exam.TimeInMinutes = collection.TimeInMinutes;
+                    db.SaveChanges();
                     Alerts.alreadyExist = true;
                     return RedirectToAction("addExam", "Admin");
                 }
@@ -310,8 +319,9 @@ namespace WebApplication5.Controllers
 
                 collection.Image.SaveAs(filename);
                 collection.Cover = filetodb;
+                
 
-                db.Exams.Add(new Exam() { Name = collection.Name, Cover = collection.Cover,TotalQuestions=collection.TotalQuestions,MarkPerMcq=collection.MarkPerMcq,NegativeMark=collection.NegativeMark });
+                db.Exams.Add(new Exam() { Name = collection.Name, Cover = collection.Cover,TotalQuestions=collection.TotalQuestions,MarkPerMcq=collection.MarkPerMcq,NegativeMark=collection.NegativeMark,TimeInMinutes=collection.TimeInMinutes });
                 db.SaveChanges();
                 Alerts.addExam = true;
                 return RedirectToAction("addExam", "Admin");

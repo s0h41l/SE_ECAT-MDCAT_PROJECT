@@ -26,6 +26,7 @@ namespace WebApplication5
         public Nullable<long> TotalQuestions { get; set; }
         public Nullable<long> MarkPerMcq { get; set; }
         public Nullable<int> NegativeMark { get; set; }
+        public Nullable<int> TimeInMinutes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mcq> Mcqs { get; set; }

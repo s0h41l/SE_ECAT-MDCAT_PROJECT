@@ -16,9 +16,9 @@
     <link rel="stylesheet" type="text/css" href="~/Content/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="~/Content/styles/responsive.css">
     <link href="~/Content/alertify.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <link href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/Alertify.js"></script>
-   
 
 
 </head>
@@ -45,9 +45,9 @@
                                 <nav class="main_nav_contaner">
                                     <ul class="main_nav">
                                         <li class="active"><a href="~/">Home</a></li>
-                                        <li><a href="#Resources">Subjects</a></li>
-                                        <li><a href="#Resources">Exams</a></li>
-                                        <li><a href="members.html">Members Area</a></li>
+                                        <li><a href="~/#Resources">Subjects</a></li>
+                                        <li><a href="~/#Resources">Exams</a></li>
+                                        <li><a href="~/#">Members Area</a></li>
                                         @if (Request.IsAuthenticated)
                                         {
 
@@ -102,8 +102,8 @@
 
 
                     <li class="active menu_mm"><a href="~/">Home</a></li>
-                    <li class="menu_mm"><a href="#Resources">Subjects</a></li>
-                    <li class="menu_mm"><a href="#Resources">Exams</a></li>
+                    <li class="menu_mm"><a href="~/#Resources">Subjects</a></li>
+                    <li class="menu_mm"><a href="~/#Resources">Exams</a></li>
                     <li class="menu_mm"><a href="members.html">Members Area</a></li>
                     <li class="menu_mm"><a data-toggle="modal" href="" data-target="#contribute">Contribute</a></li>
                     <li class="menu_mm"><a data-toggle="modal" href="" data-target="#contact">Contact</a></li>
@@ -424,10 +424,6 @@
     </div>
 
 
-
-
-
-    <script src="~/Content/js/jquery-3.2.1.min.js"></script>
     <script src="~/Content/styles/bootstrap4/popper.js"></script>
     <script src="~/Content/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="~/Content/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
@@ -583,6 +579,7 @@
 
         });
 
+    
     </script>
 
 

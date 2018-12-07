@@ -69,6 +69,7 @@
     <EntitySetMapping Name="Exams">
       <EntityTypeMapping TypeName="DBEntities.Exam">
         <MappingFragment StoreEntitySet="Exams">
+          <ScalarProperty Name="TimeInMinutes" ColumnName="TimeInMinutes" />
           <ScalarProperty Name="NegativeMark" ColumnName="NegativeMark" />
           <ScalarProperty Name="MarkPerMcq" ColumnName="MarkPerMcq" />
           <ScalarProperty Name="TotalQuestions" ColumnName="TotalQuestions" />

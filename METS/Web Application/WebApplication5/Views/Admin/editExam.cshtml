@@ -29,9 +29,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end row -->
-
-
 
             <form method="post" action="~/Admin/editExam/@exam.Id" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
@@ -57,13 +54,17 @@
                         <label>Negative Mark *</label>
                         <input value="@exam.NegativeMark" class="form-control" required type="number" name="NegativeMark" min="0" max="10" />
                     </div>
+
+                    <div class="form-group w-25">
+                        <label>Time in Minuts *</label>
+                        <input value="@exam.TimeInMinutes" class="form-control" required type="number" name="TimeInMinutes" min="5" max="300" />
+                    </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <label for="Image mx-2">Cover *</label>
                             <input type="file" class="" name="Image"/>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Update Exam" class="btn btn-info" />
@@ -71,22 +72,7 @@
                     </div>
                 </div>
             </form>
-
-            
-
-
-
-
-
-
-
-
         </div>
-        <!-- end row -->
-
-
-
-
 
 
 
