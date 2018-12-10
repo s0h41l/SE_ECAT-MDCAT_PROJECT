@@ -42,11 +42,11 @@
                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group w-25">
+                    @*<div class="form-group w-25">
                         <label>Total MCQ *</label>
                         <input value="@exam.TotalQuestions" class="form-control" required type="number" name="TotalQuestions" min="10" max="300" />
-                    </div>
-                    <div class="form-group w-25">
+                    </div>*@
+                    <div class="form-group w-25 mt-2">
                         <label>Mark Per MCQ *</label>
                         <input value="@exam.MarkPerMcq" class="form-control" required type="number" name="MarkPerMcq" min="1" max="20" />
                     </div>
@@ -73,8 +73,6 @@
                 </div>
             </form>
         </div>
-
-
 
     </div>
 

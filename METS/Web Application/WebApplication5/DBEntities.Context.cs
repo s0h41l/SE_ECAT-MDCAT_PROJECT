@@ -37,5 +37,6 @@ namespace WebApplication5
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Submission> Submissions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<ExamSubject> ExamSubjects { get; set; }
     }
 }

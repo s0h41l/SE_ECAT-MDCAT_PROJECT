@@ -1,0 +1,92 @@
+﻿@model WebApplication5.Models.SubjectViewModel
+
+@{
+    ViewBag.Title = "addSubject";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+<div class="content-page">
+
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Add Subject</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Add Subject</li>
+                            <li class="breadcrumb-item active">Add Subject</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" action="~/Admin/addSubject" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label>Name * </label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <label>Cover * </label>
+                            <input type="file" name="Image" value="" required />
+                        </div>
+                    </div><div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add Subject" class="btn btn-info" />
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="mt-4">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Cover</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in ViewData["subjects"] as List<Subject>)
+                        {
+                            <tr>
+                                <td>@i.Id</td>
+                                <td>@i.Name</td>
+                                <td><img src="@i.Cover" alt="Alternate Text" class="img-fluid" style="width:50px" /></td>
+                                <td><a href="~/Admin/editSubject/@i.Id">Edit</a></td>
+                                <td><a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteSubject/@i.Id">Delete</a></td>
+                                
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+		</div>

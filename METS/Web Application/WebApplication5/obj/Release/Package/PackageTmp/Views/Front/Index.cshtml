@@ -1,0 +1,404 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_front_layout.cshtml";
+}
+
+<div class="home">
+    <div class="home_background" style="background-image: url(/Content/images/slide.jpg)"></div>
+    <div class="home_content">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 class="home_title">Prepare for ECAT/MDCAT with Open Source Preparation System</h1>
+                    <div class="home_button trans_200"><a href="#">get started</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="courses" id="Resources">
+    <div class="courses_background"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="section_title text-center">Resources</h2>
+            </div>
+        </div>
+        <div class="row courses_row">
+
+            @foreach (var i in ViewData["exams"] as List<Exam>)
+            {
+
+                <div class="col-lg-4 course_col">
+                    <div class="course">
+                        <div class="course_image"><img src="@i.Cover" alt=""></div>
+                        <div class="course_body">
+                            <div class="course_title"><a href="~/Exam/fullExam/@i.Id">@i.Name</a></div>
+                            <div class="course_info">
+                                <ul>
+                                    <li><a href="instructors.html">Open Source Database</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div class="course_text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                            </div>
+                        </div>
+                        <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                            <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                            <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var i in ViewData["subjects"] as List<Subject>)
+            {
+
+                <div class="col-lg-4 course_col">
+                    <div class="course">
+                        <div class="course_image"><img src="@i.Cover" alt=""></div>
+                        <div class="course_body">
+                            <div class="course_title"><a href="~/Exam/subjectExam/@i.Id">@i.Name</a></div>
+                            <div class="course_info">
+                                <ul>
+                                    <li><a href="instructors.html">Open Source Database</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div class="course_text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                            </div>
+                        </div>
+                        <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                            <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                            <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+
+
+            <!-- Course -->
+            
+
+
+            <!--
+                
+            
+
+                <div class="col-lg-4 course_col">
+                <div class="course">
+                    <div class="course_image"><img src="/Content/images/mcat.jpg" alt=""></div>
+                    <div class="course_body">
+                        <div class="course_title"><a href="exam.html">MDCAT</a></div>
+                        <div class="course_info">
+                            <ul>
+                                <li><a href="instructors.html">Open Source Database</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="course_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                        </div>
+                    </div>
+                    <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                        <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 course_col">
+                <div class="course">
+                    <div class="course_image"><img src="/Content/images/physics.jpg" alt=""></div>
+                    <div class="course_body">
+                        <div class="course_title"><a href="exam.html">PHYSICS</a></div>
+                        <div class="course_info">
+                            <ul>
+                                <li><a href="instructors.html">Open Source Database</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="course_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                        </div>
+                    </div>
+                    <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                        <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 course_col">
+                <div class="course">
+                    <div class="course_image"><img src="/Content/images/chemistry.jpg" alt=""></div>
+                    <div class="course_body">
+                        <div class="course_title"><a href="exam.html">CHEMISTRY</a></div>
+                        <div class="course_info">
+                            <ul>
+                                <li><a href="instructors.html">Open Source Database</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="course_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                        </div>
+                    </div>
+                    <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                        <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 course_col">
+                <div class="course">
+                    <div class="course_image"><img src="/Content/images/biology.jpg" alt=""></div>
+                    <div class="course_body">
+                        <div class="course_title"><a href="exam.html">BIOLOGY</a></div>
+                        <div class="course_info">
+                            <ul>
+                                <li><a href="instructors.html">Open Source Database</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="course_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                        </div>
+                    </div>
+                    <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                        <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 course_col">
+                <div class="course">
+                    <div class="course_image"><img src="/Content/images/maths.jpg" alt=""></div>
+                    <div class="course_body">
+                        <div class="course_title"><a href="exam.html">MATHEMATICS</a></div>
+                        <div class="course_info">
+                            <ul>
+                                <li><a href="instructors.html">Open Source Database</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="course_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                        </div>
+                    </div>
+                    <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                        <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-4 course_col">
+                <div class="course">
+                    <div class="course_image"><img src="/Content/images/english.jpg" alt=""></div>
+                    <div class="course_body">
+                        <div class="course_title"><a href="exam.html">ENGLISH</a></div>
+                        <div class="course_info">
+                            <ul>
+                                <li><a href="instructors.html">Open Source Database</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="course_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla.</p>
+                        </div>
+                    </div>
+                    <div class="course_footer d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_students"><i class="fa fa-user" aria-hidden="true"></i><span>10</span></div>
+                        <div class="course_rating ml-auto"><i class="fa fa-star" aria-hidden="true"></i><span>4,5</span></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+                
+            -->
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Instructors -->
+
+<div class="instructors">
+    <div class="instructors_background" style="background-image:url(/Content/images/instructors_background.png)"></div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col">
+                <h2 class="section_title text-center">Managers</h2>
+            </div>
+        </div>
+        <div class="row instructors_row pt-4">
+
+            <!-- Instructor -->
+            <div class="col-lg-3 instructor_col">
+                <div class="instructor text-center">
+                    <div class="instructor_image_container">
+                        <div class="instructor_image"><img src="/Content/images/sohail.jpg" alt=""></div>
+                    </div>
+                    <div class="instructor_name"><a href="instructors.html">Sohail Khn</a></div>
+                    <div class="instructor_title">Developer</div>
+                    <div class="instructor_text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis fringilla tortor.</p>
+                    </div>
+                    <div class="instructor_social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructor -->
+            <div class="col-lg-3 instructor_col">
+                <div class="instructor text-center">
+                    <div class="instructor_image_container">
+                        <div class="instructor_image"><img src="/Content/images/abdullah.jpg" alt=""></div>
+                    </div>
+                    <div class="instructor_name"><a href="instructors.html">Abdullah Sheikh</a></div>
+                    <div class="instructor_title">Tester</div>
+                    <div class="instructor_text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis fringilla tortor.</p>
+                    </div>
+                    <div class="instructor_social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructor -->
+            <div class="col-lg-3 instructor_col">
+                <div class="instructor text-center">
+                    <div class="instructor_image_container">
+                        <div class="instructor_image"><img src="/Content/images/sohaib.jpg" alt=""></div>
+                    </div>
+                    <div class="instructor_name"><a href="instructors.html">Sohaib Arif</a></div>
+                    <div class="instructor_title">Designer</div>
+                    <div class="instructor_text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis fringilla tortor.</p>
+                    </div>
+                    <div class="instructor_social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 instructor_col">
+                <div class="instructor text-center">
+                    <div class="instructor_image_container">
+                        <div class="instructor_image"><img src="/Content/images/haider.jpg" alt=""></div>
+                    </div>
+                    <div class="instructor_name"><a href="instructors.html">Haider Ali</a></div>
+                    <div class="instructor_title">Database manager</div>
+                    <div class="instructor_text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis fringilla tortor.</p>
+                    </div>
+                    <div class="instructor_social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Register -->
+
+<div class="register" id="register">
+    <div class="container">
+        <div class="row">
+
+            <!-- Register Form -->
+
+            <div class="col-lg-6 mt-5 mb-5">
+                <div class="register_form_container">
+                    <div class="register_form_title">Register</div>
+                    <form action="#" id="register_form" class="register_form">
+                        <!--
+                        <div class="row register_row">
+                            <div class="col-lg-6 register_col">
+                                <input type="text" class="form_input" placeholder="Name" required="required">
+                            </div>
+                            <div class="col-lg-6 register_col">
+                                <input type="email" class="form_input" placeholder="Email" required="required">
+                            </div>
+                            <div class="col-lg-6 register_col">
+                                <input type="password" class="form_input" placeholder="Password">
+                            </div>
+                            <div class="col-lg-6 register_col">
+                                <input type="password" class="form_input" placeholder="Confirm Password">
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="form_button">Register</button>
+
+                            </div>
+
+                        </div>-->
+                        <div class="mt-4 form-inline">Register <a href="~/Account/Register" class="nav-link">Register</a></div>
+                        <div class="mt-4 form-inline">Already have account ? <a href="~/Account/Login" class="nav-link">Login</a></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Register Timer -->
+
+            <div class="col-lg-6">
+                <div class="register_timer_container">
+                    <div class="register_timer_title">Register Now</div>
+                    <div class="register_timer_text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu metus in, sagittis fringilla tortor.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

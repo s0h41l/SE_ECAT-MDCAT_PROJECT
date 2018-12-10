@@ -79,7 +79,6 @@ E:\SE Project\METS\Web Application\WebApplication5\bin\Microsoft.Owin.Security.T
 E:\SE Project\METS\Web Application\WebApplication5\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\SE Project\METS\Web Application\WebApplication5\obj\Debug\WebApplication5.dll
 E:\SE Project\METS\Web Application\WebApplication5\obj\Debug\WebApplication5.pdb
-E:\SE Project\METS\Web Application\WebApplication5\obj\Debug\WebApplication5.csprojResolveAssemblyReference.cache
 E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\bin\roslyn\csc.exe
 E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\bin\roslyn\Microsoft.CodeAnalysis.dll

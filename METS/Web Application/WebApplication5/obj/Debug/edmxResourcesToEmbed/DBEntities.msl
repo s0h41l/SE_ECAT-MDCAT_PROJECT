@@ -148,5 +148,14 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="ExamSubjects">
+      <EntityTypeMapping TypeName="DBEntities.ExamSubject">
+        <MappingFragment StoreEntitySet="ExamSubjects">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

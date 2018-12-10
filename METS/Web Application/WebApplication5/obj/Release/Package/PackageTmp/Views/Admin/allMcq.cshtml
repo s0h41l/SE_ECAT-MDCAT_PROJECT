@@ -1,0 +1,148 @@
+﻿@model IEnumerable<WebApplication5.Models.McqViewModel>
+
+@{
+    ViewBag.Title = "allMcq";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+<h2>allMcq</h2>
+
+
+
+
+
+<div class="content-page">
+    
+
+
+    <!-- Start content -->
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">All MCQS</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Home</li>
+                            <li class="breadcrumb-item active">All MMCQS</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+                <table class="table table-bordered table-responsive">
+                    
+                    <thead>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Question)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionC)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OptionD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CorrectOption)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Exam)
+                    </th>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        Chapter
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                  
+                    <th>Ation</th>
+                    <th>Ation</th>
+                    <th>Ation</th>
+                    </thead>
+      
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Question)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionB)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionD)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CorrectOption)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Exam)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Chapter)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+
+                                <td><a href="~/Admin/editMcq/@item.Id">Edit</a></td>
+                                <td><a onclick="return confirm('Are you sure you want to disapprove this mcq?')" href="~/Admin/disapproveMcq/@item.Id">Disapprove<a></td>
+                                <td>
+                                    <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteMcq/@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+
+
+
+        </div>
+        <!-- end row -->
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+		</div>

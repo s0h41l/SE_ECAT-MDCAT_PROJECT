@@ -1,0 +1,191 @@
+﻿@using WebApplication5.Models
+@{
+    ViewBag.Title = "startExam";
+    Layout = "~/Views/Shared/_front_layout.cshtml";
+}
+
+<style>
+    .question {
+        font-weight: 600;
+    }
+
+    .answers {
+        margin-bottom: 20px;
+    }
+
+        .answers label {
+            display: block;
+        }
+
+    #submit {
+        font-family: sans-serif;
+        font-size: 20px;
+        background-color: #279;
+        color: #fff;
+        border: 0px;
+        border-radius: 3px;
+        padding: 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+        #submit:hover {
+            background-color: #38a;
+        }
+</style>
+
+
+
+
+<div class="container mt-5 pt-4 mb-5">
+
+
+    <div class="container mt-5 pt-4">
+        <div id="quiz"></div>
+        <button id="submit">Submit Paper</button>
+        <div id="results"></div>
+    </div>
+
+</div>
+
+<script>
+
+    var database_mcq = [];
+
+
+    var mcq = function (question, optionA, optionB, optionC, optionD, correctOption, exam, subject, chapter) {
+        this.question = question;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correctOption = correctOption;
+        this.exam = exam;
+        this.subject = subject;
+        this.chapter;
+        return ({
+            question: this.question,
+            answers: {
+                A: this.optionA,
+                B: this.optionB,
+                C: this.optionC,
+                D: this.optionD,
+            },
+            correctAnswer: this.correctOption,
+            subject: this.subject,
+            exam: this.exam
+        });
+    };
+
+
+</script>
+
+@foreach (var i in ViewData["mcqs"] as List<McqViewModel>)
+{
+    <script>
+        var a = new mcq("@i.Question", "@i.OptionA", "@i.OptionB", "@i.OptionC", "@i.OptionD", "@i.CorrectOption", "@i.Exam", "@i.Subject", "@i.Chapter");
+        database_mcq.push(a);
+
+    </script>
+
+
+}
+
+
+
+
+<script>
+
+    console.log(database_mcq);
+
+
+
+    (function () {
+        function buildQuiz() {
+
+
+            // we'll need a place to store the HTML output
+            const output = [];
+
+            // for each question...
+            myQuestions.forEach((currentQuestion, questionNumber) => {
+                // we'll want to store the list of answer choices
+                const answers = [];
+
+                // and for each available answer...
+                for (letter in currentQuestion.answers) {
+                    // ...add an HTML radio button
+                    answers.push(
+          `<p>
+
+                        <input type="radio" name="question${questionNumber}" value="${letter}">
+                        ${letter} :
+            ${currentQuestion.answers[letter]}
+          </p>`
+        );
+                }
+                // add this question and its answers to the output
+                output.push(
+              `<div class="question my-1 pt-2"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join("")} </div>`
+            );
+            });
+
+            // finally combine our output list into one string of HTML and put it on the page
+            quizContainer.innerHTML = output.join("");
+        }
+        function showResults() {
+            // gather answer containers from our quiz
+            const answerContainers = quizContainer.querySelectorAll(".answers");
+
+            // keep track of user's answers
+            let numCorrect = 0;
+            let physics = 0;
+            // for each question...
+            myQuestions.forEach((currentQuestion, questionNumber) => {
+                // find selected answer
+                const answerContainer = answerContainers[questionNumber];
+                const selector = `input[name=question${questionNumber}]:checked`;
+                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                // if answer is correct
+                if (userAnswer === currentQuestion.correctAnswer) {
+                    // add to the number of correct answers
+                    numCorrect++;
+                    if (currentQuestion.subject == "physics") {
+                        physics++;
+
+                    }
+                    
+                    // color the answers green
+                    answerContainers[questionNumber].classList.add("bg-success");
+                   
+                } else {
+
+                    console.log(questionNumber);
+                    // if answer is wrong or blank
+                    // color the answers red
+                    answerContainers[questionNumber].classList.add("bg-danger");
+                    
+                }
+            });
+
+            // show number of correct answers out of total
+            resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+            console.log(physics);
+        }
+
+        const quizContainer = document.getElementById("quiz");
+        const resultsContainer = document.getElementById("results");
+        const submitButton = document.getElementById("submit");
+        const myQuestions = database_mcq;
+
+        buildQuiz();
+        submitButton.addEventListener("click", showResults);
+    })();
+
+
+
+
+
+</script>

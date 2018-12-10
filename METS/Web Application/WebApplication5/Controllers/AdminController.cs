@@ -200,7 +200,9 @@ namespace WebApplication5.Controllers
         public ActionResult addExam()
         {
             DBEnt db = new DBEnt();
-            var exams = db.Exams.ToList<Exam>();
+            var exams = db.Exams.OrderBy(x => x.Name).ToList<Exam>();
+            var subjects = db.Subjects.OrderBy(x => x.Name).ToList();
+            ViewData["subjects"] = subjects;
             ViewData["exams"] = exams;
             return View(new ExamViewModel());
         }
@@ -236,7 +238,6 @@ namespace WebApplication5.Controllers
                     collection.Cover = filetodb;
                     exam.Name = collection.Name;
                     exam.Cover = collection.Cover;
-                    exam.TotalQuestions = collection.TotalQuestions;
                     exam.MarkPerMcq = collection.MarkPerMcq;
                     exam.NegativeMark = collection.NegativeMark;
                     exam.TimeInMinutes = collection.TimeInMinutes;
@@ -258,7 +259,6 @@ namespace WebApplication5.Controllers
                         collection.Image.SaveAs(filename);
                         collection.Cover = filetodb;
                         exam.Cover = collection.Cover;
-                        exam.TotalQuestions = collection.TotalQuestions;
                         exam.MarkPerMcq = collection.MarkPerMcq;
                         exam.NegativeMark = collection.NegativeMark;
                         exam.TimeInMinutes = collection.TimeInMinutes;
@@ -278,7 +278,6 @@ namespace WebApplication5.Controllers
                 {
 
                     exam.Name = collection.Name;
-                    exam.TotalQuestions = collection.TotalQuestions;
                     exam.MarkPerMcq = collection.MarkPerMcq;
                     exam.NegativeMark = collection.NegativeMark;
                     exam.TimeInMinutes = collection.TimeInMinutes;
@@ -289,7 +288,6 @@ namespace WebApplication5.Controllers
                 }
                 else
                 {
-                    exam.TotalQuestions = collection.TotalQuestions;
                     exam.MarkPerMcq = collection.MarkPerMcq;
                     exam.NegativeMark = collection.NegativeMark;
                     exam.TimeInMinutes = collection.TimeInMinutes;
@@ -306,6 +304,22 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult addExam(ExamViewModel collection)
         {
+            List<ExamSubject> sublist = new List<ExamSubject>();
+            foreach(long i in collection.Subjects)
+            {
+                ExamSubject obj = new ExamSubject()
+                {
+                    SubjectId = i,
+
+                };
+
+                if (!sublist.Contains(obj)) {
+                    sublist.Add(obj);
+                }
+              
+            }
+
+
             if (!examExist(collection.Name))
             {
                 DBEnt db = new DBEnt();
@@ -319,10 +333,18 @@ namespace WebApplication5.Controllers
 
                 collection.Image.SaveAs(filename);
                 collection.Cover = filetodb;
-                
+                Exam exm = new Exam() { Name = collection.Name, Cover = collection.Cover, MarkPerMcq = collection.MarkPerMcq, NegativeMark = collection.NegativeMark, TimeInMinutes = collection.TimeInMinutes };
 
-                db.Exams.Add(new Exam() { Name = collection.Name, Cover = collection.Cover,TotalQuestions=collection.TotalQuestions,MarkPerMcq=collection.MarkPerMcq,NegativeMark=collection.NegativeMark,TimeInMinutes=collection.TimeInMinutes });
+
+                db.Exams.Add(exm);
                 db.SaveChanges();
+                foreach (ExamSubject i in sublist)
+                {
+                    i.ExamId = exm.Id;
+                    db.ExamSubjects.Add(i);
+                }
+                db.SaveChanges();
+                
                 Alerts.addExam = true;
                 return RedirectToAction("addExam", "Admin");
                 

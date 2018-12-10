@@ -1,0 +1,120 @@
+﻿@model WebApplication5.Models.ExamViewModel
+
+@{
+    ViewBag.Title = "Edit Exam";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+
+<div class="content-page">
+
+    @{
+        var exam = ViewData["exam"] as Exam;
+    }
+
+    <!-- Start content -->
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Edit Exam</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Edit</li>
+                            <li class="breadcrumb-item active">Edit Exam</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" action="~/Admin/editExam/@exam.Id" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label>Exam title * </label>
+                        <div>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required" ,@Value=exam.Name} })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group w-25">
+                        <label>Total MCQ *</label>
+                        <input value="@exam.TotalQuestions" class="form-control" required type="number" name="TotalQuestions" min="10" max="300" />
+                    </div>
+                    <div class="form-group w-25">
+                        <label>Mark Per MCQ *</label>
+                        <input value="@exam.MarkPerMcq" class="form-control" required type="number" name="MarkPerMcq" min="1" max="20" />
+                    </div>
+                    <div class="form-group w-25">
+                        <label>Negative Mark *</label>
+                        <input value="@exam.NegativeMark" class="form-control" required type="number" name="NegativeMark" min="0" max="10" />
+                    </div>
+
+                    <div class="form-group w-25">
+                        <label>Time in Minuts *</label>
+                        <input value="@exam.TimeInMinutes" class="form-control" required type="number" name="TimeInMinutes" min="5" max="300" />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <label for="Image mx-2">Cover *</label>
+                            <input type="file" class="" name="Image"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Update Exam" class="btn btn-info" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

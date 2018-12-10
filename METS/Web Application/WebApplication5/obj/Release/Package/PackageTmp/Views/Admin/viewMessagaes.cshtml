@@ -1,0 +1,94 @@
+﻿@model IEnumerable<WebApplication5.Models.MessageViewModel>
+
+@{
+    ViewBag.Title = "viewMessagaes";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+
+
+
+
+
+
+<div class="content-page">
+
+    <!-- Start content -->
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Messages</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Home</li>
+                            <li class="breadcrumb-item active">Messages</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
+            <table class="table table-bordered">
+                <thead>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th>Action</th>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td style="max-width:50">
+                            @Html.DisplayFor(modelItem => item.Message)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Time)
+                        </td>
+                        <td>
+                            <a href="~/Admin/deleteMessage/@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+        <!-- end row -->
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+		</div>
+
+

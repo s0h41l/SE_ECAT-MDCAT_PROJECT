@@ -63,6 +63,7 @@ namespace WebApplication5.Controllers
                 };
                 m.Add(obj);
             }
+            List<McqViewModel> sortedMCQ = m.OrderBy(x => x.Subject).ToList<McqViewModel>();
 
             ViewData["mcqs"] = m;
 

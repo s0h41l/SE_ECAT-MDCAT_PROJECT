@@ -1,0 +1,71 @@
+﻿@model WebApplication5.Models.SubjectViewModel
+
+@{
+    ViewBag.Title = "Edit Subject";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+<div class="content-page">
+
+    @{
+        var sub = ViewData["subject"] as Subject;
+    }
+
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Edit Subject</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Edit Subject</li>
+                            <li class="breadcrumb-item active">Edit Subject</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" action="~/Admin/editSubject/@sub.Id" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label>Name * </label>
+                        <div>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required",@Value=sub.Name } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label>Cover * </label>
+                            <input type="file" name="Image" value="" />
+                        </div>
+                    </div><div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Update Subject" class="btn btn-info" />
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+           
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+		</div>

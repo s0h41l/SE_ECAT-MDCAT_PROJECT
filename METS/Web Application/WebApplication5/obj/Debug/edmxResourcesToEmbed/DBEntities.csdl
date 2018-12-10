@@ -319,5 +319,14 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="ExamSubjects" EntityType="DBEntities.ExamSubject" />
   </EntityContainer>
+  <EntityType Name="ExamSubject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamId" Type="Int64" />
+    <Property Name="SubjectId" Type="Int64" />
+  </EntityType>
 </Schema>

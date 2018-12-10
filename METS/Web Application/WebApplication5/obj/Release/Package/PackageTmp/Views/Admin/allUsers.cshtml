@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WebApplication5.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "allUsers";
+    Layout = "~/Views/Shared/_admin_layout.cshtml";
+}
+
+
+
+
+
+
+
+
+
+
+
+<div class="content-page">
+
+    <!-- Start content -->
+    <div class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcrumb-holder">
+                        <h1 class="main-title float-left">Users</h1>
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item">Users</li>
+                            <li class="breadcrumb-item active">Users</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
+
+            <table class="table table-bordered">
+               
+                <thead>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+
+                <th>Action</th>
+                    </thead>
+          
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                       
+                        <td>
+                            <a onclick="return confirm('Are you sure you want to delete?')" href="~/Admin/deleteUser/@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+
+
+            
+
+
+
+           
+
+
+
+
+
+
+
+
+        </div>
+        <!-- end row -->
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+		</div>
+
+
+
+
+
+
+

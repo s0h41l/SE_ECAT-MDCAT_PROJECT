@@ -27,6 +27,7 @@
         <AssociationConnector Association="DBEntities.FK_Mcqs_Subjects" ManuallyRouted="false" />
         <AssociationConnector Association="DBEntities.FK_Submissions_Mcqs" ManuallyRouted="false" />
         <AssociationConnector Association="DBEntities.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBEntities.ExamSubject" Width="1.5" PointX="10.375" PointY="9.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

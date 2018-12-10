@@ -82,6 +82,14 @@
     <Property Name="NegativeMark" Type="int" />
     <Property Name="TimeInMinutes" Type="int" />
   </EntityType>
+  <EntityType Name="ExamSubjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamId" Type="bigint" />
+    <Property Name="SubjectId" Type="bigint" />
+  </EntityType>
   <EntityType Name="Mcqs">
     <Key>
       <PropertyRef Name="Id" />
@@ -287,6 +295,7 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Chapters" EntityType="Self.Chapters" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exams" EntityType="Self.Exams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamSubjects" EntityType="Self.ExamSubjects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mcqs" EntityType="Self.Mcqs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
