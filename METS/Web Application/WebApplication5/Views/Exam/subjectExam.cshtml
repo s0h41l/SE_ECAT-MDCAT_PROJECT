@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "subjectExam";
+    Layout = "~/Views/Shared/_front_layout.cshtml";
+}
+
+<div class="container mt-5 pt-4">
+    <h3>Chapters</h3>
+    <table class="table">
+        <thead>
+            <th>Chapter No</th>
+            <th>Chapter Name</th>
+        </thead>
+        <tbody>
+>
+                @foreach (var i in ViewData["chapters"] as List<Chapter>)
+                {
+                    <tr>
+                        <td>@i.ChapterNo</td>
+                        <td><a class="nav-link" href="~/Exam/startSubjectExam/@i.Id">@i.Name</a></td>
+                    </tr>
+
+                }
+
+            
+
+       
+        </tbody>
+
+    </table>
+
+</div>
+

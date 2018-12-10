@@ -377,6 +377,8 @@
     <Content Include="Views\Admin\editChapter.cshtml" />
     <Content Include="Views\Exam\fullExam.cshtml" />
     <Content Include="Views\Exam\startExam.cshtml" />
+    <Content Include="Views\Exam\subjectExam.cshtml" />
+    <Content Include="Views\Exam\startSubjectExam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

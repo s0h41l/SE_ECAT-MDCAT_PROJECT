@@ -89,6 +89,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ExamId" Type="bigint" />
     <Property Name="SubjectId" Type="bigint" />
+    <Property Name="NoOfMcq" Type="bigint" />
   </EntityType>
   <EntityType Name="Mcqs">
     <Key>

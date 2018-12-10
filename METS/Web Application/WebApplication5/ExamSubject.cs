@@ -17,5 +17,6 @@ namespace WebApplication5
         public long Id { get; set; }
         public Nullable<long> ExamId { get; set; }
         public Nullable<long> SubjectId { get; set; }
+        public Nullable<long> NoOfMcq { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 
 <!DOCTYPE html>
 <html>
@@ -44,14 +44,46 @@
                                         <li class="active"><a href="~/">Home</a></li>
                                         <li><a href="~/#Resources">Subjects</a></li>
                                         <li><a href="~/#Resources">Exams</a></li>
-                                        <li><a href="~/#">Members Area</a></li>
                                         @if (Request.IsAuthenticated)
                                         {
 
                                             <li><a data-toggle="modal" href="" data-target="#contribute">Contribute</a></li>
+                                            <li><a data-toggle="modal" href="" data-target="#contact">Contact</a></li>
 
                                         }
-                                        <li><a data-toggle="modal" href="" data-target="#contact">Contact</a></li>
+                                        <li> 
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                                
+                                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+
+                                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item notify-item">
+                                                        <i class="fa fa-power-off"></i> <span>Logout</span>
+                                                    </a>
+
+                                                }
+                                            }
+                                        </li>
+                                        
+
+                                        @if (!Request.IsAuthenticated)
+                                        {
+                                            <li>|</li>
+
+                                            <li class="ml-3"><a  href="~/Account/Login">Login</a></li>
+                                            <li class="ml-3"><a  href="~/Account/Register">Register</a></li>
+
+                                        }
+
+
+
+
+                                                
+
+
                                     </ul>
                                 </nav>
                                 <div class="header_content_right ml-auto text-right">
@@ -68,7 +100,7 @@
 
                                     <!-- Hamburger -->
 
-                                    <div class="user"><a href="#register"><i class="fa fa-user" aria-hidden="true"></i></a></div>
+                                    <div class="user"><a href="~/#register"><i class="fa fa-user" aria-hidden="true"></i></a></div>
                                     <div class="hamburger menu_mm">
                                         <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
                                     </div>
@@ -101,7 +133,6 @@
                     <li class="active menu_mm"><a href="~/">Home</a></li>
                     <li class="menu_mm"><a href="~/#Resources">Subjects</a></li>
                     <li class="menu_mm"><a href="~/#Resources">Exams</a></li>
-                    <li class="menu_mm"><a href="members.html">Members Area</a></li>
                     <li class="menu_mm"><a data-toggle="modal" href="" data-target="#contribute">Contribute</a></li>
                     <li class="menu_mm"><a data-toggle="modal" href="" data-target="#contact">Contact</a></li>
 

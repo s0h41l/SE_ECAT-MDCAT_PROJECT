@@ -328,5 +328,6 @@
     <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ExamId" Type="Int64" />
     <Property Name="SubjectId" Type="Int64" />
+    <Property Name="NoOfMcq" Type="Int64" />
   </EntityType>
 </Schema>

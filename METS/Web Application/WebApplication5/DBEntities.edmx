@@ -94,6 +94,7 @@
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ExamId" Type="bigint" />
           <Property Name="SubjectId" Type="bigint" />
+          <Property Name="NoOfMcq" Type="bigint" />
         </EntityType>
         <EntityType Name="Mcqs">
           <Key>
@@ -683,6 +684,7 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ExamId" Type="Int64" />
           <Property Name="SubjectId" Type="Int64" />
+          <Property Name="NoOfMcq" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -840,6 +842,7 @@
           <EntitySetMapping Name="ExamSubjects">
             <EntityTypeMapping TypeName="DBEntities.ExamSubject">
               <MappingFragment StoreEntitySet="ExamSubjects">
+                <ScalarProperty Name="NoOfMcq" ColumnName="NoOfMcq" />
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
                 <ScalarProperty Name="ExamId" ColumnName="ExamId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

@@ -1,61 +1,62 @@
 ﻿@using WebApplication5.Models
 @{
-    ViewBag.Title = "startExam";
+    ViewBag.Title = "startSubjectExam";
     Layout = "~/Views/Shared/_front_layout.cshtml";
 }
 
-<style>
-    .question {
-        font-weight: 600;
-    }
-
-    .answers {
-        margin-bottom: 20px;
-    }
-
-        .answers label {
-            display: block;
+<div class="container-fluid mt-5 pt-2">
+    <style>
+        .question {
+            font-weight: 600;
         }
 
-    #submit {
-        font-family: sans-serif;
-        font-size: 20px;
-        background-color: #279;
-        color: #fff;
-        border: 0px;
-        border-radius: 3px;
-        padding: 20px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
-
-        #submit:hover {
-            background-color: #38a;
+        .answers {
+            margin-bottom: 20px;
         }
-</style>
+
+            .answers label {
+                display: block;
+            }
+
+        #submit {
+            font-family: sans-serif;
+            font-size: 20px;
+            background-color: #279;
+            color: #fff;
+            border: 0px;
+            border-radius: 3px;
+            padding: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+            #submit:hover {
+                background-color: #38a;
+            }
+    </style>
 
 
 
 
-<div class="container">
-    <div class="row " id="score_block">
-        <div class="col-sm-12 col-md-12 col-lg-10">
-            <div class=" mt-5 mb-5">
+    <div class="container">
+        <div class="row " id="score_block">
+            <div class="col-sm-12 col-md-12 col-lg-10">
+                <div class=" mt-5 mb-5">
 
 
-                <div class="container mt-5 pt-4">
-                    <div id="quiz"></div>
-                    <button id="submit">Submit Paper</button>
-                    <div id="results"></div>
+                    <div class="container mt-5 pt-4">
+                        <div id="quiz"></div>
+                        <button id="submit">Submit Paper</button>
+                        <div id="results"></div>
+                    </div>
+
                 </div>
-
             </div>
+            
         </div>
-
     </div>
-</div>
 
-<script>
+    <script>
 
     var database_mcq = [];
 
@@ -85,23 +86,23 @@
     };
 
 
-</script>
+    </script>
 
-@foreach (var i in ViewData["mcqs"] as List<McqViewModel>)
-{
-    <script>
+    @foreach (var i in ViewData["mcq"] as List<McqViewModel>)
+    {
+        <script>
         var a = new mcq("@i.Question", "@i.OptionA", "@i.OptionB", "@i.OptionC", "@i.OptionD", "@i.CorrectOption", "@i.Exam", "@i.Subject", "@i.Chapter");
         database_mcq.push(a);
 
-    </script>
+        </script>
 
 
-}
+    }
 
 
 
 
-<script>
+    <script>
 
     console.log(database_mcq);
 
@@ -113,7 +114,7 @@
 
             // we'll need a place to store the HTML output
             const output = [];
-            var number = 1;
+
             // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
                 // we'll want to store the list of answer choices
@@ -133,14 +134,10 @@
                 }
                 // add this question and its answers to the output
                 output.push(
-              `<div class="question my-2 pt-2">Q ${number} :  ${currentQuestion.question} </div>
+              `<div class="question my-1 pt-2"> ${currentQuestion.question} </div>
         <div class="answers"> ${answers.join("")} </div>`
             );
-
-                number++;
-
             });
-            
 
             // finally combine our output list into one string of HTML and put it on the page
             quizContainer.innerHTML = output.join("");
@@ -151,7 +148,6 @@
 
             // keep track of user's answers
             let numCorrect = 0;
-            let physics = 0;
             // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
                 // find selected answer
@@ -163,39 +159,34 @@
                 if (userAnswer === currentQuestion.correctAnswer) {
                     // add to the number of correct answers
                     numCorrect++;
-                    if (currentQuestion.subject == "physics") {
-                        physics++;
+                 
 
-                    }
-                    
                     // color the answers green
                     answerContainers[questionNumber].classList.add("bg-success");
-                   
+
                 } else {
 
                     console.log(questionNumber);
                     // if answer is wrong or blank
                     // color the answers red
                     answerContainers[questionNumber].classList.add("bg-danger");
-                    
+
                 }
             });
 
-            // show number of correct answers out of total
-            resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-            console.log(physics);
             var html = '<div class="col-sm-12 col-md-12 col-lg-2 mt-5 pt-5"><div class="card-body border p-3 mt-3"><h1 class="display-3 text-success text-center">%right%</h1></div><div class="card-body border p-3 "><h1 class="display-3 text-danger text-center">%wrong%</h1></div><div class="card-body border p-3 "><h1 class="display-3 text-primary text-center">%total%</h1></div></div>';
             html = html.replace('%right%', numCorrect);
             html = html.replace('%wrong%', myQuestions.length - numCorrect)
             html = html.replace('%total%', myQuestions.length)
             document.querySelector('#score_block').insertAdjacentHTML('beforeend', html);
+            resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+            console.log(physics);
         }
 
         const quizContainer = document.getElementById("quiz");
         const resultsContainer = document.getElementById("results");
         const submitButton = document.getElementById("submit");
         const myQuestions = database_mcq;
-        
 
         buildQuiz();
         submitButton.addEventListener("click", showResults);
@@ -205,4 +196,10 @@
 
 
 
-</script>
+    </script>
+
+
+</div>
+
+
+

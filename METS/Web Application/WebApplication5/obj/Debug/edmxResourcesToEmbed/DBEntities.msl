@@ -151,6 +151,7 @@
     <EntitySetMapping Name="ExamSubjects">
       <EntityTypeMapping TypeName="DBEntities.ExamSubject">
         <MappingFragment StoreEntitySet="ExamSubjects">
+          <ScalarProperty Name="NoOfMcq" ColumnName="NoOfMcq" />
           <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
           <ScalarProperty Name="ExamId" ColumnName="ExamId" />
           <ScalarProperty Name="Id" ColumnName="Id" />

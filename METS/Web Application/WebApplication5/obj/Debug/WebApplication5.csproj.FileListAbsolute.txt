@@ -160,3 +160,4 @@ E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\bin\Mi
 E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\obj\Debug\WebApplication5.dll
 E:\SE ABdullah\SE_ECAT-MDCAT_PROJECT\METS\Web Application\WebApplication5\obj\Debug\WebApplication5.pdb
+E:\SE Project\METS\Web Application\WebApplication5\obj\Debug\WebApplication5.csprojResolveAssemblyReference.cache

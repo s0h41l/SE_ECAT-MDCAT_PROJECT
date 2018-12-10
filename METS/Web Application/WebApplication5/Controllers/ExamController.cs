@@ -21,32 +21,77 @@ namespace WebApplication5.Controllers
         public ActionResult subjectExam(long? id)
         {
             DBEnt db = new DBEnt();
-            var subject = db.Subjects.Where(x => x.Id == id).FirstOrDefault();
-            return Json(subject, JsonRequestBehavior.AllowGet);
+            List<Chapter> chapters = db.Chapters.Where(x => x.SubjectId == id).OrderBy(x=>x.ChapterNo).ToList<Chapter>();
+            ViewData["chapters"] = chapters;
+            return View();
+           
+        }
+
+        public ActionResult startSubjectExam(long? id)
+        {
+            DBEnt db = new DBEnt();
+            List<Mcq> subjectMcq = db.Mcqs.Where(x => x.ChapterId == id).ToList<Mcq>();
+         
+
+            List<McqViewModel> m = new List<McqViewModel>();
+            foreach (Mcq i in subjectMcq)
+            {
+                McqViewModel obj = new McqViewModel()
+                {
+                    Id = i.Id,
+                    Question = i.Question,
+                    OptionA = i.OptionA,
+                    OptionB = i.OptionB,
+                    OptionC = i.OptionC,
+                    OptionD = i.OptionD,
+                    CorrectOption = i.CorrectOption,
+                    Exam = getExamType(i.ExamId),
+                    Subject = mcqSubject(i.Id),
+                    Chapter = mcqChapter(i.Id)
+                };
+                m.Add(obj);
+            }
+
+            ViewData["mcq"] = m;
+            return View();
+
         }
 
 
         public ActionResult startExam(long id)
         {
+
             DBEnt db = new DBEnt();
-            List<Mcq> mcqs = db.Mcqs.Where(x=>x.ExamId==id).Where(x=>x.Status=="approve").ToList<Mcq>();
-            var exam = db.Exams.Where(x => x.Id == id).FirstOrDefault();
-            List<Mcq> selected_mcqs = new List<Mcq>();
+            List<ExamSubject> subjectList = db.ExamSubjects.Where(x=>x.ExamId==id).ToList<ExamSubject>();
+            List<Mcq> mcqs = db.Mcqs.Where(x => x.ExamId == id).Where(x => x.Status == "approve").ToList<Mcq>();
+            List<McqViewModel> m = new List<McqViewModel>();
+            int mcqCount = 0;
             Random ran = new Random();
-            while (selected_mcqs.Count<exam.TotalQuestions && selected_mcqs.Count !=mcqs.Count)
+            List<Mcq> mcq_1 = new List<Mcq>();
+            List<int> innn = new List<int>();
+            foreach (ExamSubject i in subjectList)
             {
-                int index = ran.Next(0, mcqs.Count);
-                if (!selected_mcqs.Contains(mcqs[index]))
+                mcqCount = 0;
+                while (mcqCount < i.NoOfMcq && mcqCount < mcqs.Count)
                 {
-                    selected_mcqs.Add(mcqs[index]);
+                    List<Mcq> mcq = mcqs.Where(x => x.SubjectId == i.SubjectId).ToList<Mcq>();
+                    int index = ran.Next(0, mcq.Count);
+                    innn.Add(index);
+                   
+                    if (!mcq_1.Contains(mcq[index]))
+                    {
+                        mcq_1.Add(mcq[index]);
+                        mcqCount++;
+
+                    }
+
 
                 }
-                
+
+
             }
 
-            
-            List<McqViewModel> m = new List<McqViewModel>();
-            foreach (Mcq i in selected_mcqs)
+            foreach (Mcq i in mcq_1)
             {
                 McqViewModel obj = new McqViewModel()
                 {

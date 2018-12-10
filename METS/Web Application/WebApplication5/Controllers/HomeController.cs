@@ -10,7 +10,7 @@ namespace WebApplication5.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("~/");
         }
 
         public ActionResult About()
